@@ -69,6 +69,19 @@ function Header() {
               Reviews
             </Link>
           </li>
+          <li></li>
+          <li>
+            <form>
+              <input
+                onChange={(event) => {
+                  // setSearchInput(event.target.value);
+                }}
+                className="search-input"
+                // value={searchInput}
+                placeholder="Search.."
+              ></input>
+            </form>
+          </li>
         </ul>
       </nav>
     </header>
