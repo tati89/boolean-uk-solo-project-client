@@ -5,6 +5,8 @@ import "./css/App.css";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Reviews from "./pages/Reviews";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
           </Route>
           <Route path="/reviews">
             <Reviews />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/create-account">
+            <SignUp />
           </Route>
         </Switch>
       </main>
