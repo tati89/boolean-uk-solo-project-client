@@ -9,9 +9,11 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
 function App() {
+  const [loggedinUser, setLoggedinUser] = useState();
+
   return (
     <div className="App">
-      <Header />
+      <Header loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} />
       <main>
         <Switch>
           <Route path="/" exact>
@@ -27,7 +29,10 @@ function App() {
             <Reviews />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login
+              loggedinUser={loggedinUser}
+              setLoggedinUser={setLoggedinUser}
+            />
           </Route>
           <Route path="/create-account">
             <SignUp />

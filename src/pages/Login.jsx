@@ -3,9 +3,40 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/Login.css";
 
-function Login() {
-  const [usernsme, setUsername] = useState();
+function Login({ loggedinUser, setLoggedinUser }) {
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+
+  console.log(loggedinUser);
+
+  function onLogin(e) {
+    e.preventDefault();
+
+    const loginDetails = {
+      username,
+      password,
+    };
+
+    fetch("http://localhost:4000/login", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginDetails),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error("Failed to login");
+        }
+      })
+      .then((user) => {
+        setLoggedinUser(user.data);
+      })
+      .catch((error) => console.error(error));
+  }
 
   return (
     <section className="login-page-container">
@@ -13,7 +44,7 @@ function Login() {
 
       <div className="form-wrapper">
         <form
-          //   onSubmit={(e) => onLogin(e)}
+          onSubmit={(e) => onLogin(e)}
           className="login"
           noValidate
           autoComplete="off"

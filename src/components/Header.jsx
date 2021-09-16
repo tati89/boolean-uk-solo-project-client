@@ -1,14 +1,52 @@
 import "../css/Header.css";
 import { Switch, Route, Redirect, Link } from "react-router-dom";
 
-function Header() {
+function Header({ loggedinUser, setLoggedinUser }) {
+  const logOut = () => {
+    fetch("http://localhost:4000/logout", {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error("Failed to logout");
+        }
+      })
+      .then((data) => {
+        setLoggedinUser(null);
+      })
+      .catch((error) => console.error(error));
+
+    <Route path="/" exact>
+      <Redirect to="/home" />
+    </Route>;
+  };
+
   return (
     <header>
       <div className="top-header">
         <div className="login-div">
-          <Link to="/login" className="logon-link">
-            Login
-          </Link>
+          {loggedinUser ? (
+            `${loggedinUser.username} |`
+          ) : (
+            <Link to="/login" className="logon-link">
+              Login
+            </Link>
+          )}
+          {loggedinUser ? (
+            <Link to="/" className="nave-li">
+              <button onClick={logOut} className="logon-link log-out">
+                Log out
+              </button>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
         <div>
           <h1 className="logo">Cibo Delizioso</h1>
