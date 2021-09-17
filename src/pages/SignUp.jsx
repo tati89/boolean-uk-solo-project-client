@@ -1,20 +1,63 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { TextField, FormControlLabel, Checkbox } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
+import { Route, Redirect, Link } from "react-router-dom";
 // import { green } from "@mui/material/colors";
 import "../css/SignUp.css";
 
-function SignUp() {
-  const [firstname, setFirstname] = useState();
-  const [lastname, setLastname] = useState();
+function SignUp({ setLoggedinUser }) {
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [avatar, setAvatar] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
   const [agreedToNews, setAgreedToNews] = useState();
-  console.log(agreedToNews);
+
+  function onSignUp(e) {
+    e.preventDefault();
+
+    const newUser = {
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      password: password,
+      avatar: avatar,
+      phone: phone,
+      email: email,
+      agreedToNews: agreedToNews,
+
+      //   firstName String
+      //   lastName String
+      //   password String
+      //   username String @unique
+      //   avatar String
+      //   agreedToNews Boolean ?
+      //   phone  String
+      //   email String
+    };
+    console.log({ newUser });
+
+    fetch("http://localhost:4000/signup", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error("Failed to create new user");
+        }
+      })
+      .then((user) => {
+        setLoggedinUser(user.data);
+      })
+      .catch((error) => console.error(error));
+  }
 
   return (
     <section className="sighn-up-container">
@@ -22,20 +65,20 @@ function SignUp() {
 
       <div className="sign-up-form-wrapper">
         <form
-          // onSubmit={(e) => signUp(e)}
+          onSubmit={(e) => onSignUp(e)}
           className="sign-up-form"
           noValidate
           autoComplete="off"
         >
           <div className="first-last-names-form ">
             <TextField
-              onChange={(e) => setFirstname(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
               id="firstName"
               label="Name"
               variant="outlined"
             />
             <TextField
-              onChange={(e) => setLastname(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
               id="lastName"
               label="Surname"
               variant="outlined"
@@ -74,17 +117,13 @@ function SignUp() {
             variant="outlined"
           />
           <FormControlLabel
-            control={<Checkbox name="Promotions" color="success" />}
+            control={<Checkbox name="agreedToNews" color="primary" />}
             onChange={(e) => setAgreedToNews(e.target.checked)}
             label="I would like to recieve promotions and updates via email"
           />
 
           <div className="sign-up-button-wrapper">
-            <button className="sign-up-button">
-              <Link to="/login" className="get-started-link">
-                Get started
-              </Link>
-            </button>
+            <button className="sign-up-button">Sign up</button>
           </div>
         </form>
       </div>

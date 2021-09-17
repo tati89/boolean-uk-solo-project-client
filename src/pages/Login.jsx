@@ -7,8 +7,6 @@ function Login({ loggedinUser, setLoggedinUser }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
-  console.log(loggedinUser);
-
   function onLogin(e) {
     e.preventDefault();
 

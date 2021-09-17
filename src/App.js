@@ -1,5 +1,5 @@
-import { Link, Redirect, Route, Switch } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import "./css/App.css";
 import Home from "./pages/Home";
@@ -35,7 +35,7 @@ function App() {
             />
           </Route>
           <Route path="/create-account">
-            <SignUp />
+            <SignUp setLoggedinUser={setLoggedinUser} />
           </Route>
         </Switch>
       </main>

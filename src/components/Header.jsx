@@ -1,5 +1,5 @@
 import "../css/Header.css";
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Route, Redirect, Link } from "react-router-dom";
 
 function Header({ loggedinUser, setLoggedinUser }) {
   const logOut = () => {
