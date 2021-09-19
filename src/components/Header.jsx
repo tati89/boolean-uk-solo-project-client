@@ -1,5 +1,6 @@
 import "../css/Header.css";
 import { Route, Redirect, Link } from "react-router-dom";
+import Modal from "../components/Modal";
 
 function Header({ loggedinUser, setLoggedinUser, search, setSearch }) {
   const logOut = () => {
@@ -90,8 +91,17 @@ function Header({ loggedinUser, setLoggedinUser, search, setSearch }) {
             £0
           </span>
         </div>
+
         <Link to="/basket" className="nave-li">
-          <button className="login-button">Checkout</button>
+          {!loggedinUser ? (
+            <Modal
+              buttonLabel={<button className="login-button">Checkout</button>}
+            >
+              <p>You must be logged in</p>
+            </Modal>
+          ) : (
+            <button className="login-button">Checkout</button>
+          )}
         </Link>
       </div>
 

@@ -76,7 +76,7 @@ function App() {
               <Basket />
             </Route>
           ) : (
-            <h1>You must be logged in to see your basket</h1>
+            ""
           )}
         </Switch>
       </main>
