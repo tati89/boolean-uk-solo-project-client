@@ -46,7 +46,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/menu">
-            <Menu />
+            <Menu categories={categories} items={items} />
           </Route>
           <Route path="/reviews">
             <Reviews />
