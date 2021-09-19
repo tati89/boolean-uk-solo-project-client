@@ -1,7 +1,7 @@
 import "../css/Header.css";
 import { Route, Redirect, Link } from "react-router-dom";
 
-function Header({ loggedinUser, setLoggedinUser }) {
+function Header({ loggedinUser, setLoggedinUser, search, setSearch }) {
   const logOut = () => {
     fetch("http://localhost:4000/logout", {
       credentials: "include",
@@ -26,6 +26,11 @@ function Header({ loggedinUser, setLoggedinUser }) {
       <Redirect to="/home" />
     </Route>;
   };
+
+  function onSearch(e) {
+    e.preventDefault();
+    setSearch(e.target.value);
+  }
 
   return (
     <header>
@@ -111,11 +116,8 @@ function Header({ loggedinUser, setLoggedinUser }) {
           <li>
             <form>
               <input
-                onChange={(event) => {
-                  // setSearchInput(event.target.value);
-                }}
+                onChange={(e) => onSearch(e)}
                 className="search-input"
-                // value={searchInput}
                 placeholder="Search.."
               ></input>
             </form>

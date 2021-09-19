@@ -12,6 +12,7 @@ import { useEffect } from "react";
 
 function App() {
   const [loggedinUser, setLoggedinUser] = useState();
+  const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
 
@@ -36,7 +37,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} />
+      <Header
+        loggedinUser={loggedinUser}
+        setLoggedinUser={setLoggedinUser}
+        search={search}
+        setSearch={setSearch}
+      />
       <main>
         <Switch>
           <Route path="/" exact>
@@ -46,7 +52,12 @@ function App() {
             <Home />
           </Route>
           <Route path="/menu">
-            <Menu categories={categories} items={items} />
+            <Menu
+              categories={categories}
+              items={items}
+              search={search}
+              setSearch={setSearch}
+            />
           </Route>
           <Route path="/reviews">
             <Reviews />
