@@ -7,9 +7,32 @@ import Menu from "./pages/Menu";
 import Reviews from "./pages/Reviews";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Basket from "./pages/Basket";
+import { useEffect } from "react";
 
 function App() {
   const [loggedinUser, setLoggedinUser] = useState();
+  const [categories, setCategories] = useState([]);
+  const [items, setItems] = useState([]);
+
+  const [isFetching, setIsFetching] = useState(true);
+  const [fetchError, setFetchError] = useState();
+
+  useEffect(() => {
+    const fetchResults = (endpoint) =>
+      fetch(`http://localhost:4000/${endpoint}`).then((resp) => resp.json());
+
+    const dataFetches = [
+      fetchResults("categories").then((categories) =>
+        setCategories(categories.data)
+      ),
+      fetchResults("items").then((items) => setItems(items.data)),
+    ];
+
+    Promise.all(dataFetches)
+      .catch(setFetchError)
+      .finally(() => setIsFetching(false));
+  }, []);
 
   return (
     <div className="App">
@@ -37,6 +60,13 @@ function App() {
           <Route path="/create-account">
             <SignUp setLoggedinUser={setLoggedinUser} />
           </Route>
+          {loggedinUser ? (
+            <Route path="/basket">
+              <Basket />
+            </Route>
+          ) : (
+            <h1>You must be logged in to see your basket</h1>
+          )}
         </Switch>
       </main>
     </div>

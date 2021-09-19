@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { TextField, FormControlLabel, Checkbox } from "@material-ui/core";
-import { Route, Redirect, Link } from "react-router-dom";
-// import { green } from "@mui/material/colors";
 import "../css/SignUp.css";
 
 function SignUp({ setLoggedinUser }) {
@@ -15,26 +13,17 @@ function SignUp({ setLoggedinUser }) {
   const [agreedToNews, setAgreedToNews] = useState();
 
   function onSignUp(e) {
-    e.preventDefault();
+    // e.preventDefault();
 
     const newUser = {
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      password: password,
-      avatar: avatar,
-      phone: phone,
-      email: email,
-      agreedToNews: agreedToNews,
-
-      //   firstName String
-      //   lastName String
-      //   password String
-      //   username String @unique
-      //   avatar String
-      //   agreedToNews Boolean ?
-      //   phone  String
-      //   email String
+      firstName,
+      lastName,
+      username,
+      password,
+      avatar,
+      phone,
+      email,
+      agreedToNews,
     };
     console.log({ newUser });
 
