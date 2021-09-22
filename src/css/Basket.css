@@ -9,20 +9,20 @@ h2 {
   color: #585554;
 }
 
-.min-order {
+/* .min-order {
   background-color: #e6e7e6;
   margin-top: 5px;
   padding: 20px;
   display: grid;
   justify-items: center;
-}
+} */
 
 h3 {
   color: #585655;
 }
 
 .basket-container ul {
-  height: 60vh;
+  /* height: 60vh; */
   padding: 2rem;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -72,16 +72,23 @@ svg {
 .product-button {
   padding: 0.3em 0.7em;
   border-radius: 3px;
-  background-color: #609cb3;
+  background-color: #64a331;
   color: white;
   border: 0;
   cursor: pointer;
 }
 
+.pay-btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1.8rem;
+  margin-top: 1rem;
+}
+
 .pay-button {
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #609cb3;
+  background-color: #64a331;
   color: white;
   border: 0;
   cursor: pointer;

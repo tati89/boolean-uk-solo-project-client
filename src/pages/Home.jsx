@@ -1,5 +1,15 @@
+import "../css/Home.css";
+
 function Home() {
-  return <h1>Home page</h1>;
+  return (
+    <div class="hero-image">
+      <div class="hero-text">
+        <h1>I am John Doe</h1>
+        <p>And I'm a Photographer</p>
+        <button>Hire me</button>
+      </div>
+    </div>
+  );
 }
 
 export default Home;

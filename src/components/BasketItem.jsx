@@ -1,26 +1,41 @@
-function BasketItem() {
+function BasketItem({
+  item,
+  baskItem,
+  addToBasket,
+  decreaseQty,
+  removeBasketitem,
+}) {
   return (
     <li>
       <article className="basket-container__item">
-        <img
-          src="https://cocinaandaluza.es/wp-content/uploads/2014/11/chorizos-al-vino.jpg"
-          alt=""
-          width="90"
-        />
-        <p>Chorizos Al Vino</p>
+        <img src={item.img} alt={item.name} width="90" />
+        <p>{item.name}</p>
         <p>
           <div className="button-wrapper">
             <div>
-              <button className="product-button">-</button>
+              <button
+                onClick={() => decreaseQty(baskItem)}
+                className="product-button"
+              >
+                -
+              </button>
             </div>
-            <span>1</span>
+            <span>{baskItem.qty}</span>
             <div>
-              <button className="product-button">+</button>
+              <button
+                onClick={() => addToBasket(item)}
+                className="product-button"
+              >
+                +
+              </button>
             </div>
           </div>
         </p>
-        <p>Item total: £5.95</p>
-        <button className="delete-button">
+        <p>Item total: £{(baskItem.qty * item.price).toFixed(2)}</p>
+        <button
+          onClick={() => removeBasketitem(baskItem)}
+          className="delete-button"
+        >
           <svg
             version="1.1"
             id="Layer_1"

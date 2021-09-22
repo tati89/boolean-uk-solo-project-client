@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField, FormControlLabel, Checkbox } from "@material-ui/core";
 import "../css/SignUp.css";
 
-function SignUp({ setLoggedinUser }) {
+function SignUp({ setLoggedinUser, loggedinUser, setBasket }) {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [username, setUsername] = useState();
@@ -10,10 +10,27 @@ function SignUp({ setLoggedinUser }) {
   const [avatar, setAvatar] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
-  const [agreedToNews, setAgreedToNews] = useState();
+  const [agreedToNews, setAgreedToNews] = useState(false);
+
+  // useEffect(() => {
+  //   if (loggedinUser) {
+  //     fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
+  //       credentials: "include",
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         user_ID: loggedinUser.id,
+  //       }),
+  //     })
+  //       .then((resp) => resp.json())
+  //       .then((basket) => setBasket(basket.data));
+  //   }
+  // }, [loggedinUser]);
 
   function onSignUp(e) {
-    // e.preventDefault();
+    e.preventDefault();
 
     const newUser = {
       firstName,
@@ -25,7 +42,6 @@ function SignUp({ setLoggedinUser }) {
       email,
       agreedToNews,
     };
-    console.log({ newUser });
 
     fetch("http://localhost:4000/signup", {
       credentials: "include",

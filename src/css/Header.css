@@ -1,13 +1,12 @@
 header {
   display: grid;
 }
-/* TOP HEADER */
+/* TOP HEADER  */
 .top-header {
   display: grid;
   grid-template-columns: 0.2fr 1fr auto auto 0.2fr;
   grid-gap: 10px;
   padding: 30px 0px;
-  /* background-color: #e5e0dc; */
 }
 
 .logon-link {
@@ -61,9 +60,10 @@ header {
 .nave-li {
   padding-top: 15px;
 }
+*/
 
-/* BOTTOM HEADER */
-.header-bottom-nav {
+ /* BOTTOM HEADER  */
+ .header-bottom-nav {
   display: grid;
   padding-top: 20px;
 }
@@ -79,8 +79,6 @@ header {
 }
 
 .nave-li {
-  /* font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif; */
   font-family: Gill Sans, sans-serif;
   text-decoration: none;
   font-size: 1.5rem;
@@ -113,8 +111,8 @@ header {
   left: 30px;
   display: block;
   text-align: center;
-  background: #8a8a87;
-  color: white;
+  background: #acc796;
+  color: black;
   border-radius: 100%;
   min-width: 22px;
   height: 22px;
