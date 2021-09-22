@@ -16,6 +16,8 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
   const [basket, setBasket] = useState(null);
+  const [total, setTotal] = useState(0);
+  const [qty, setQty] = useState(0);
 
   const [isFetching, setIsFetching] = useState(true);
   const [fetchError, setFetchError] = useState();
@@ -95,6 +97,16 @@ function App() {
     }
   }, [loggedinUser]);
 
+  useEffect(() => {
+    if (basket && basket.items !== null && basket.items.length >= 1) {
+      for (const basketItem of basket.items) {
+        let foundItem = items.find((item) => item.id === basketItem.item_ID);
+        setTotal(foundItem.price * basketItem.qty);
+        setQty(basketItem.qty);
+      }
+    }
+  }, [basket]);
+
   function addToBasket(clickedItem) {
     const itemToBasket = {
       qty: 1,
@@ -168,17 +180,6 @@ function App() {
     });
   }
 
-  let total = 0;
-  let qty = 0;
-
-  if (basket) {
-    for (const basketItem of basket.items) {
-      let foundItem = items.find((item) => item.id === basketItem.item_ID);
-      total += foundItem.price * basketItem.qty;
-      qty += basketItem.qty;
-    }
-  }
-
   return (
     <div className="App">
       <Header
@@ -228,11 +229,13 @@ function App() {
             <Route path="/basket">
               <Basket
                 basket={basket}
+                setBasket={setBasket}
                 items={items}
                 addToBasket={addToBasket}
                 decreaseQty={decreaseQty}
                 removeBasketitem={removeBasketitem}
                 total={total}
+                loggedinUser={loggedinUser}
               />
             </Route>
           ) : (

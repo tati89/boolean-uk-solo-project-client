@@ -3,13 +3,50 @@ import "../css/Basket.css";
 
 function Basket({
   basket,
+  setBasket,
   items,
   addToBasket,
   decreaseQty,
   removeBasketitem,
   total,
+  loggedinUser,
 }) {
-  // function hadlePlaceOrderBtn() {}
+  function hadlePlaceOrderBtn() {
+    const newOrder = {
+      total: total,
+      user_ID: loggedinUser.id,
+    };
+
+    fetch(`http://localhost:4000/orders/${loggedinUser.id}`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newOrder),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error("Failed to create new order");
+        }
+      })
+      .then(() => {
+        fetch(`http://localhost:4000/basket/${basket.id}`, {
+          credentials: "include",
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((resp) => resp.json())
+          .then(() => setBasket(null));
+      })
+      .catch((error) => console.error(error));
+  }
+
+  console.log(basket);
   return (
     <section className="basket-container">
       <h2>Your Basket</h2>
@@ -34,7 +71,9 @@ function Basket({
       </ul>
       <h3>Total: £{total.toFixed(2)}</h3>
       <div className="pay-btn-wrapper">
-        <button className="pay-button">Place order</button>
+        <button onClick={hadlePlaceOrderBtn} className="pay-button">
+          Place order
+        </button>
       </div>
     </section>
   );
