@@ -3,19 +3,28 @@ import Banner from "../components/Banner.jsx";
 import FilteredMenu from "../components/FilteredMenu.jsx";
 import "../css/Menu.css";
 
-function Menu({ categories, items, search, setSearch, addToBasket, basket }) {
+function Menu({
+  categories,
+  items,
+  search,
+  setSearch,
+  addToBasket,
+  basket,
+  loggedinUser,
+  onSearch,
+}) {
   if (!items || !categories) {
     return <>Loading..</>;
   }
 
   return (
     <>
-      <Banner
+      {/* <Banner
         title={"Menu"}
         imageLink={
           "https://images.pexels.com/photos/2909821/pexels-photo-2909821.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
         }
-      />
+      /> */}
       <section className="menu">
         <div>
           <ul className="left-menu">
@@ -58,6 +67,8 @@ function Menu({ categories, items, search, setSearch, addToBasket, basket }) {
               search={search}
               basket={basket}
               addToBasket={addToBasket}
+              loggedinUser={loggedinUser}
+              onSearch={onSearch}
             />
           </Route>
         </div>

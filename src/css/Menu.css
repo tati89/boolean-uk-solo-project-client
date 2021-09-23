@@ -78,10 +78,10 @@ h1 {
   place-items: center;
 }
 
-.product-button {
+.product-btn {
   padding: 0.3em 0.7em;
   border-radius: 3px;
-  background-color: #63a231;
+  background-color: #ff6300;
   color: white;
   border: 0;
 }

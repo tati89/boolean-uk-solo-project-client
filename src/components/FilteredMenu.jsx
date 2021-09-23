@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import BasketItem from "./BasketItem";
 
-function FilteredMenu({ items, search, addToBasket }) {
+function FilteredMenu({ items, search, addToBasket, loggedinUser, onSearch }) {
   const [showVegeterian, setShowVegeterian] = useState(false);
   const { id } = useParams();
 
@@ -38,6 +38,15 @@ function FilteredMenu({ items, search, addToBasket }) {
             onChange={(e) => setShowVegeterian(e.target.checked)}
           />
         </label>
+        <div>
+          <form>
+            <input
+              onChange={(e) => onSearch(e)}
+              className="search-input"
+              placeholder="Search.."
+            ></input>
+          </form>
+        </div>
       </div>
 
       <div className="cards-wrapper">
@@ -84,12 +93,24 @@ function FilteredMenu({ items, search, addToBasket }) {
                 <div className="button-add-price-wrapper">
                   <span>£{price}</span>
                   <div>
-                    <button
-                      onClick={() => addToBasket(item)}
-                      className="product-button"
-                    >
-                      ADD
-                    </button>
+                    {loggedinUser ? (
+                      <button
+                        onClick={() => addToBasket(item)}
+                        className="product-button"
+                      >
+                        ADD
+                      </button>
+                    ) : (
+                      <Modal
+                        buttonLabel={
+                          <button className="product-btn">ADD</button>
+                        }
+                      >
+                        <span className="product-title">
+                          Please login or create account
+                        </span>
+                      </Modal>
+                    )}
                   </div>
                 </div>
               </div>

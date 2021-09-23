@@ -52,6 +52,8 @@ function App() {
       .then((data) => {
         setLoggedinUser(null);
         setBasket(null);
+        setTotal(0);
+        setQty(0);
       })
       .catch((error) => console.error(error));
 
@@ -59,16 +61,6 @@ function App() {
       <Redirect to="/home" />
     </Route>;
   };
-
-  // useEffect(() => {
-  //   if (loggedinUser) {
-  //     fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
-  //       credentials: "include",
-  //     })
-  //       .then((resp) => resp.json())
-  //       .then((basket) => setBasket(basket.data));
-  //   }
-  // }, [loggedinUser]);
 
   useEffect(() => {
     if (loggedinUser) {
@@ -97,13 +89,22 @@ function App() {
     }
   }, [loggedinUser]);
 
+  function onSearch(e) {
+    e.preventDefault();
+    setSearch(e.target.value);
+  }
+
   useEffect(() => {
-    if (basket && basket.items !== null && basket.items.length >= 1) {
+    if (basket && basket.items !== null) {
+      let total = 0;
+      let qty = 0;
       for (const basketItem of basket.items) {
         let foundItem = items.find((item) => item.id === basketItem.item_ID);
-        setTotal(foundItem.price * basketItem.qty);
-        setQty(basketItem.qty);
+        total += foundItem.price * basketItem.qty;
+        qty += basketItem.qty;
       }
+      setTotal(total);
+      setQty(qty);
     }
   }, [basket]);
 
@@ -186,8 +187,6 @@ function App() {
         loggedinUser={loggedinUser}
         setLoggedinUser={setLoggedinUser}
         logOut={logOut}
-        search={search}
-        setSearch={setSearch}
         total={total}
         qty={qty}
       />
@@ -205,8 +204,10 @@ function App() {
               items={items}
               addToBasket={addToBasket}
               basket={basket}
+              loggedinUser={loggedinUser}
               search={search}
               setSearch={setSearch}
+              onSearch={onSearch}
             />
           </Route>
           <Route path="/reviews">
@@ -235,6 +236,7 @@ function App() {
                 decreaseQty={decreaseQty}
                 removeBasketitem={removeBasketitem}
                 total={total}
+                setTotal={setTotal}
                 loggedinUser={loggedinUser}
               />
             </Route>

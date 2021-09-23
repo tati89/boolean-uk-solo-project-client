@@ -11,14 +11,11 @@ function Header({
   total,
   qty,
 }) {
-  function onSearch(e) {
-    e.preventDefault();
-    setSearch(e.target.value);
-  }
-
   return (
     <header>
-      <div className="top-header">
+      <div className="top-top-header">
+        <span className="free-delivery-sign">Free delivery from £25</span>
+        <div></div>
         <div className="login-div">
           {loggedinUser ? (
             `${loggedinUser.username} |`
@@ -37,9 +34,25 @@ function Header({
             ""
           )}
         </div>
+        <div className="user-account-container">
+          <svg
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#54A501"
+          >
+            <title />
+            <g id="about">
+              <path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z" />
+              <path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z" />
+            </g>
+          </svg>
+          <span className="user-account-link">account</span>
+        </div>
+      </div>
+
+      <div className="top-header">
         <div>
-          <h1 className="logo">Cibo Delizioso</h1>
-          <span className="eat-drink-enjoy">Simply order and enjoy</span>
+          <h1 className="logo">DELIZIOSO</h1>
         </div>
         <div className="header-svg">
           <div className="svg-quantity-wrapper">
@@ -73,18 +86,19 @@ function Header({
             Subtotal: <br />£{total.toFixed(2)}
           </span>
         </div>
-
-        <Link to="/basket" className="nave-li">
-          {!loggedinUser ? (
-            <Modal
-              buttonLabel={<button className="login-button">Checkout</button>}
-            >
-              <p>You must be logged in</p>
-            </Modal>
-          ) : (
-            <button className="login-button">Checkout</button>
-          )}
-        </Link>
+        <div className="nave-li-container">
+          <Link to="/basket" className="nave-li">
+            {!loggedinUser ? (
+              <Modal
+                buttonLabel={<button className="login-button">Checkout</button>}
+              >
+                <p>You must be logged in</p>
+              </Modal>
+            ) : (
+              <button className="login-button">Checkout</button>
+            )}
+          </Link>
+        </div>
       </div>
 
       <nav className="header-bottom-nav">
@@ -105,15 +119,7 @@ function Header({
             </Link>
           </li>
           <li></li>
-          <li>
-            <form>
-              <input
-                onChange={(e) => onSearch(e)}
-                className="search-input"
-                placeholder="Search.."
-              ></input>
-            </form>
-          </li>
+          <li></li>
         </ul>
       </nav>
     </header>

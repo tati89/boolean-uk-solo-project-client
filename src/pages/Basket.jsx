@@ -1,4 +1,5 @@
 import BasketItem from "../components/BasketItem";
+import Modal from "../components/Modal";
 import "../css/Basket.css";
 
 function Basket({
@@ -10,6 +11,7 @@ function Basket({
   removeBasketitem,
   total,
   loggedinUser,
+  setTotal,
 }) {
   function hadlePlaceOrderBtn() {
     const newOrder = {
@@ -41,7 +43,10 @@ function Basket({
           },
         })
           .then((resp) => resp.json())
-          .then(() => setBasket(null));
+          .then(() => {
+            setBasket(null);
+            setTotal(0);
+          });
       })
       .catch((error) => console.error(error));
   }
@@ -71,9 +76,15 @@ function Basket({
       </ul>
       <h3>Total: £{total.toFixed(2)}</h3>
       <div className="pay-btn-wrapper">
-        <button onClick={hadlePlaceOrderBtn} className="pay-button">
-          Place order
-        </button>
+        <Modal
+          buttonLabel={
+            <button onClick={hadlePlaceOrderBtn} className="pay-button">
+              Place order
+            </button>
+          }
+        >
+          <span className="product-title">Order has been placed</span>
+        </Modal>
       </div>
     </section>
   );
