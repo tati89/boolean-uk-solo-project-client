@@ -46,7 +46,21 @@ function Header({
               <path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z" />
             </g>
           </svg>
-          <span className="user-account-link">account</span>
+          {loggedinUser ? (
+            <Link to="/account" className="user-account-link">
+              account
+            </Link>
+          ) : (
+            <Modal
+              buttonLabel={
+                <Link to="/account" className="user-account-link">
+                  account
+                </Link>
+              }
+            >
+              <p>You must be logged in first</p>
+            </Modal>
+          )}
         </div>
       </div>
 

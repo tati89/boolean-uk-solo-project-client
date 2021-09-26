@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Header from "./components/Header";
 import "./css/App.css";
 import Home from "./pages/Home";
@@ -9,12 +9,15 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Basket from "./pages/Basket";
 import { useEffect } from "react";
+import Account from "./pages/Account";
+import Admin from "./pages/Admin";
 
 function App() {
   const [loggedinUser, setLoggedinUser] = useState(null);
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [basket, setBasket] = useState(null);
   const [total, setTotal] = useState(0);
   const [qty, setQty] = useState(0);
@@ -52,6 +55,7 @@ function App() {
       .then((data) => {
         setLoggedinUser(null);
         setBasket(null);
+        setOrders([]);
         setTotal(0);
         setQty(0);
       })
@@ -81,11 +85,11 @@ function App() {
 
   useEffect(() => {
     if (loggedinUser) {
-      fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
+      fetch(`http://localhost:4000/orders/${loggedinUser.id}`, {
         credentials: "include",
       })
         .then((resp) => resp.json())
-        .then((basket) => setBasket(basket.data));
+        .then((orders) => setOrders(orders.data));
     }
   }, [loggedinUser]);
 
@@ -181,6 +185,23 @@ function App() {
     });
   }
 
+  const loadCurrentlyAuthenticatedUser = useCallback(() => {
+    fetch("http://localhost:4000/me", {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        setLoggedinUser(json.data);
+      })
+      .catch(() => {
+        setLoggedinUser(null);
+      });
+  }, []);
+
+  useEffect(() => {
+    loadCurrentlyAuthenticatedUser();
+  }, [loadCurrentlyAuthenticatedUser]);
+
   return (
     <div className="App">
       <Header
@@ -219,6 +240,20 @@ function App() {
               setLoggedinUser={setLoggedinUser}
             />
           </Route>
+          {loggedinUser && loggedinUser.role === "admin" ? (
+            <Route path="/account">
+              <Admin
+                loggedinUser={loggedinUser}
+                orders={orders}
+                setOrders={setOrders}
+              />
+            </Route>
+          ) : (
+            <Route path="/account">
+              <Account loggedinUser={loggedinUser} orders={orders} />
+            </Route>
+          )}
+
           <Route path="/create-account">
             <SignUp
               setLoggedinUser={setLoggedinUser}
@@ -237,6 +272,7 @@ function App() {
                 removeBasketitem={removeBasketitem}
                 total={total}
                 setTotal={setTotal}
+                setOrders={setOrders}
                 loggedinUser={loggedinUser}
               />
             </Route>

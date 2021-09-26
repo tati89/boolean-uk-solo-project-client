@@ -1,0 +1,105 @@
+.admin-greeting {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.admin-dashboard {
+  /* background-color: #fa7d29; */
+  color: black;
+}
+
+.admin-ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  padding: 25px 15px;
+}
+
+li {
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.link-button {
+  color: black;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: white;
+  /* background-color: #fa7d29; */
+}
+
+/* COMPONENTS */
+/* ORDERS */
+.admin-orders {
+  padding-bottom: 10px;
+}
+.admin-orders-container {
+  display: grid;
+  grid-gap: 10px;
+  background-color: #f4fafa;
+  margin: 20px;
+  padding: 20px;
+}
+
+.top-order-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.bottom-order-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.left-top,
+.right-top {
+  display: grid;
+  grid-template-rows: 1fr 0.5fr;
+}
+
+.bottom-left,
+.bottom-right {
+  display: grid;
+}
+
+.order-span-title {
+  font-weight: 800;
+}
+
+.order-number {
+  color: #4ea100;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.user-order-info {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.status-info {
+  padding-top: 10px;
+  /* background-color: #4ea100; */
+  color: #ff6300;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.admin-oder-button {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  background-color: #4ea100;
+  cursor: pointer;
+}
+
+.status-button-div {
+  align-self: center;
+}

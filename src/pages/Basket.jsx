@@ -12,11 +12,13 @@ function Basket({
   total,
   loggedinUser,
   setTotal,
+  setOrders,
 }) {
   function hadlePlaceOrderBtn() {
     const newOrder = {
       total: total,
       user_ID: loggedinUser.id,
+      status: "In progress",
     };
 
     fetch(`http://localhost:4000/orders/${loggedinUser.id}`, {
@@ -48,10 +50,16 @@ function Basket({
             setTotal(0);
           });
       })
+      .then(() => {
+        fetch(`http://localhost:4000/orders/${loggedinUser.id}`, {
+          credentials: "include",
+        })
+          .then((resp) => resp.json())
+          .then((orders) => setOrders(orders.data));
+      })
       .catch((error) => console.error(error));
   }
 
-  console.log(basket);
   return (
     <section className="basket-container">
       <h2>Your Basket</h2>

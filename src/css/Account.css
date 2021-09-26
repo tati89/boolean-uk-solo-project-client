@@ -1,0 +1,152 @@
+.top-account-page {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  grid-gap: 10px;
+  padding: 20px;
+  background-color: #f1f3f4;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.account-tile {
+  padding: 25px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #585554;
+}
+
+.frame-img-user-page {
+  width: 130px;
+  height: 130px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.frame-img-user-page img {
+  display: inline;
+  margin: 0 auto;
+  margin-left: -25%;
+  height: 100%;
+  width: auto;
+}
+
+.greeting-container {
+  display: grid;
+  grid-template-rows: 1fr 0.8fr;
+  justify-items: baseline;
+}
+
+.user-greeting {
+  font-size: 1.3rem;
+}
+
+.welcome-span {
+  justify-self: first baseline;
+}
+
+.nav-account-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 7px;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.account-nav-link {
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  padding: 7px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #ff6300;
+}
+
+/* COMPONENTS */
+
+.personal-info {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  padding-left: 15px;
+  padding: 10px;
+  margin-top: 17px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.pers-info-title {
+  display: grid;
+  height: 150px;
+  justify-content: center;
+  padding: 10px;
+
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.change-info {
+  text-decoration: none;
+  color: #3c9600;
+}
+
+/* //orders component */
+.user-orders {
+  padding-bottom: 10px;
+}
+.user-orders-container {
+  display: grid;
+  grid-gap: 10px;
+  background-color: #f4fafa;
+  margin: 20px;
+  padding: 20px;
+}
+
+.top-order-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.bottom-order-info {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+}
+
+.left-top,
+.right-top {
+  display: grid;
+  grid-template-rows: 1fr 0.5fr;
+}
+
+.bottom-left,
+.bottom-right {
+  display: grid;
+}
+
+.order-span-title {
+  font-weight: 600;
+}
+
+.order-number {
+  color: #4ea100;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.user-order-info {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.user-status-info {
+  padding: 10px 15px;
+  background-color: #4ea100;
+  color: white;
+  border-radius: 5px;
+}
