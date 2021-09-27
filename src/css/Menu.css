@@ -22,6 +22,9 @@
   font-family: Gill Sans, sans-serif;
   font-size: 1.3rem;
   color: #595554;
+  background-color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .show-vegan-only {
@@ -100,28 +103,8 @@ h1 {
   border: none;
 }
 
-.menu-wrapper {
-  margin: 20px 50px;
+.form-checkbox-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-gap: 5px;
-}
-
-.menu-category {
-  height: 250px;
-  width: 280px;
-  display: grid;
-  place-items: center;
-  background-size: cover;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
-.menu-category:hover {
-  transform: scale(1.02);
-}
-
-.category-title {
-  color: white;
-  font-weight: 600;
-  font-size: 1.7rem;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }

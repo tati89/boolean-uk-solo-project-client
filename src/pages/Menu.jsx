@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { Route, Link } from "react-router-dom";
 import Banner from "../components/Banner.jsx";
 import FilteredMenu from "../components/FilteredMenu.jsx";
@@ -13,64 +15,93 @@ function Menu({
   loggedinUser,
   onSearch,
 }) {
+  const [filter, setFilter] = useState();
+  const [filteredItems, setFilteredItems] = useState(items);
+
+  useEffect(() => {
+    if (filter) {
+      switch (filter) {
+        case "starters":
+          setFilteredItems(items.filter((item) => item.category_ID === 1));
+          break;
+        case "salads":
+          setFilteredItems(items.filter((item) => item.category_ID === 2));
+          break;
+        case "pizzas":
+          setFilteredItems(items.filter((item) => item.category_ID === 3));
+          break;
+        case "pastas":
+          setFilteredItems(items.filter((item) => item.category_ID === 4));
+          break;
+        case "deserts":
+          setFilteredItems(items.filter((item) => item.category_ID === 5));
+          break;
+      }
+    } else {
+      setFilteredItems(items);
+    }
+  }, [filter, items]);
+
   if (!items || !categories) {
     return <>Loading..</>;
   }
 
   return (
     <>
-      {/* <Banner
-        title={"Menu"}
-        imageLink={
-          "https://images.pexels.com/photos/2909821/pexels-photo-2909821.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        }
-      /> */}
       <section className="menu">
         <div>
           <ul className="left-menu">
-            {categories &&
-              categories.map((category) => (
-                <li key={category.id}>
-                  <Link to={`/menu/${category.id}`} className="category-link">
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
+            <li>
+              <button
+                onClick={() => setFilter("starters")}
+                className="category-link"
+              >
+                Starters
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setFilter("salads")}
+                className="category-link"
+              >
+                Salads
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setFilter("pizzas")}
+                className="category-link"
+              >
+                Pizzas
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setFilter("pastas")}
+                className="category-link"
+              >
+                Pastas
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setFilter("deserts")}
+                className="category-link"
+              >
+                Deserts
+              </button>
+            </li>
           </ul>
         </div>
         <div className="right-menu">
-          <Route exact path="/menu">
-            <div className="menu-wrapper">
-              {categories &&
-                categories.map((category) => (
-                  <div
-                    key={category.id}
-                    className="menu-category"
-                    style={{
-                      backgroundImage: `url(${category.img})`,
-                    }}
-                  >
-                    <Link
-                      key={category.id}
-                      to={`/menu/${category.id}`}
-                      className="category-link"
-                    >
-                      <p className="category-title">{category.name}</p>
-                    </Link>
-                  </div>
-                ))}
-            </div>
-          </Route>
-          <Route path="/menu/:id">
-            <FilteredMenu
-              items={items}
-              search={search}
-              basket={basket}
-              addToBasket={addToBasket}
-              loggedinUser={loggedinUser}
-              onSearch={onSearch}
-            />
-          </Route>
+          <FilteredMenu
+            filteredItems={filteredItems}
+            search={search}
+            basket={basket}
+            addToBasket={addToBasket}
+            loggedinUser={loggedinUser}
+            onSearch={onSearch}
+          />
         </div>
       </section>
     </>

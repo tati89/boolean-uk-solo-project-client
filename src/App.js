@@ -219,7 +219,7 @@ function App() {
             <Redirect to="/home" />
           </Route>
           <Route path="/home">
-            <Home />
+            <Home categories={categories} />
           </Route>
           <Route path="/menu">
             <Menu

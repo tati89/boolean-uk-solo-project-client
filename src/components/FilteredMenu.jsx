@@ -3,17 +3,14 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import BasketItem from "./BasketItem";
 
-function FilteredMenu({ items, search, addToBasket, loggedinUser, onSearch }) {
+function FilteredMenu({
+  filteredItems,
+  search,
+  addToBasket,
+  loggedinUser,
+  onSearch,
+}) {
   const [showVegeterian, setShowVegeterian] = useState(false);
-  const { id } = useParams();
-
-  let filteredItems = items;
-
-  if (id) {
-    filteredItems = filteredItems.filter(
-      (item) => item.category_ID === Number(id)
-    );
-  }
 
   if (search) {
     filteredItems = filteredItems.filter((item) =>
@@ -29,9 +26,9 @@ function FilteredMenu({ items, search, addToBasket, loggedinUser, onSearch }) {
 
   return (
     <>
-      <div>
+      <div className="form-checkbox-container">
         <label htmlFor="show-vegetarian-only">
-          Vegetarian options only{" "}
+          Vegetarian options only
           <input
             id="show-vegetarian-only"
             type="checkbox"
