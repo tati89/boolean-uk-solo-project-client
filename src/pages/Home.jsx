@@ -6,11 +6,13 @@ function Home({ categories }) {
   return (
     <div class="home">
       <Banner
-        title={"Menu"}
+        title={"Simply order and enjoy!"}
+        button={"Get started"}
         imageLink={
-          "https://images.pexels.com/photos/2909821/pexels-photo-2909821.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          "https://images.pexels.com/photos/64208/pexels-photo-64208.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
         }
       />
+
       <div className="menu-wrapper">
         {categories &&
           categories.map((category) => (

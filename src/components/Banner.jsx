@@ -1,10 +1,13 @@
 import "../css/Banner.css";
 
-function Banner({ title, imageLink }) {
+function Banner({ title, button, imageLink }) {
   return (
     <section className={"banner"}>
       <h1>{title}</h1>
-      <img src={imageLink} alt={imageLink}></img>
+      <div>
+        <button>{button}</button>
+      </div>
+      <img className="banner-img" src={imageLink} alt={imageLink}></img>
     </section>
   );
 }
