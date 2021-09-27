@@ -17,6 +17,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [userOrders, setUserOrders] = useState([]);
   const [basket, setBasket] = useState(null);
   const [total, setTotal] = useState(0);
@@ -34,6 +35,7 @@ function App() {
         setCategories(categories.data)
       ),
       fetchResults("items").then((items) => setItems(items.data)),
+      fetchResults("reviews").then((reviews) => setReviews(reviews.data)),
     ];
 
     Promise.all(dataFetches)
@@ -232,7 +234,7 @@ function App() {
             />
           </Route>
           <Route path="/reviews">
-            <Reviews />
+            <Reviews reviews={reviews} />
           </Route>
           <Route path="/login">
             <Login

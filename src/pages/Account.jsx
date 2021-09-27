@@ -8,6 +8,7 @@ import "../css/Account.css";
 function Account({ loggedinUser, userOrders }) {
   const [showInfo, setShowInfo] = useState(true);
   const [showOrders, setShowOrders] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
 
   if (!loggedinUser) {
     return null;
@@ -16,11 +17,19 @@ function Account({ loggedinUser, userOrders }) {
   function displayInfo() {
     setShowInfo(!showInfo);
     setShowOrders(false);
+    setShowReviewForm(false);
   }
 
   function displayOrders() {
     setShowOrders(!showOrders);
     setShowInfo(false);
+    setShowReviewForm(false);
+  }
+
+  function displayReviewForm() {
+    setShowReviewForm(!showReviewForm);
+    setShowInfo(false);
+    setShowOrders(false);
   }
 
   return (
@@ -42,7 +51,9 @@ function Account({ loggedinUser, userOrders }) {
         <button onClick={displayInfo} className="account-nav-link">
           Personal Information
         </button>
-        <button className="account-nav-link">Post Review</button>
+        <button onClick={displayReviewForm} className="account-nav-link">
+          Post Review
+        </button>
         <button onClick={displayOrders} className="account-nav-link">
           Orders
         </button>
@@ -51,7 +62,7 @@ function Account({ loggedinUser, userOrders }) {
       <div className="bottom container">
         {showInfo ? <PersonalInfo loggedinUser={loggedinUser} /> : ""}
         {showOrders ? <UserOrders userOrders={userOrders} /> : ""}
-        <AddReview loggedinUser={loggedinUser} />
+        {showReviewForm ? <AddReview loggedinUser={loggedinUser} /> : ""}
       </div>
     </section>
   );

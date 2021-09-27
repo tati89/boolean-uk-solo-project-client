@@ -6,32 +6,13 @@
   justify-items: center;
 }
 
-/* .top-addRevie-page {
-  display: grid;
-  grid-template-rows: 0.3fr 0.5fr;
-  justify-items: center;
-  margin-bottom: 20px;
-} */
-
 .addReview-page-h2 {
   font-family: Roboto, sans-serif;
-
   font-weight: 700;
   font-size: 1.4rem;
-  /* line-height: 55px; */
   letter-spacing: 0px;
   color: rgb(34, 47, 45);
 }
-
-/* .addReview-page-h2 {
-  font-family: Roboto, sans-serif;
-  margin: 0px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0.1px;
-  color: rgb(69, 74, 94);
-} */
 
 .addReview-form-wrapper {
   display: grid;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import "../css/AddReview.css";
+import Modal from "../components/Modal";
 
 function AddReview({ loggedinUser }) {
   const [reviewDate, setReviewDate] = useState("");
@@ -12,7 +13,7 @@ function AddReview({ loggedinUser }) {
   }
 
   function postReview(e) {
-    e.preventDefault();
+    // e.preventDefault();
 
     const newReview = {
       date: reviewDate,
@@ -46,7 +47,7 @@ function AddReview({ loggedinUser }) {
   return (
     <section className="add-review-container">
       <div className="top-addRevie-page">
-        <h2 className="addReview-page-h2">What is your opinion?</h2>
+        <h2 className="addReview-page-h2">Share your opinion</h2>
       </div>
       <div className="addReview-form-wrapper">
         <form className="add-review-form" noValidate autoComplete="off">
@@ -65,20 +66,25 @@ function AddReview({ loggedinUser }) {
             id="content"
             label="content"
             variant="outlined"
-            placeholder="...."
             fullWidth
             multiline
             rows="9"
           />
           <div className="post-review-wrapper">
-            <Link to="/reviews">
-              <button
-                onClick={(e) => postReview(e)}
-                className="post-review-button"
-              >
-                Post
-              </button>
-            </Link>
+            <Modal
+              buttonLabel={
+                <button
+                  onClick={(e) => postReview(e)}
+                  className="post-review-button"
+                >
+                  Post
+                </button>
+              }
+            >
+              <span className="product-title">
+                Thank you for sharing your opinion
+              </span>
+            </Modal>
           </div>
         </form>
       </div>
