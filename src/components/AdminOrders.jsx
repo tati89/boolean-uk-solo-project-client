@@ -1,8 +1,8 @@
-function AdminOrders({ orders }) {
+function AdminOrders({ filteredOrders, statusOnItsWay, statusDelivered }) {
   return (
     <section className="admin-orders">
-      {orders &&
-        orders.map((order) => {
+      {filteredOrders &&
+        filteredOrders.map((order) => {
           const { id, date, total, status } = order;
           return (
             <div key={id}>
@@ -19,9 +19,14 @@ function AdminOrders({ orders }) {
                     </div>
                   </div>
                   <div className="right-top">
-                    <psan className="order-span-title">Change status:</psan>
+                    <span className="order-span-title">Change status:</span>
                     <div className="status-button-div">
-                      <button className="admin-oder-button">On it's way</button>
+                      <button
+                        onClick={() => statusOnItsWay(order)}
+                        className="admin-oder-button"
+                      >
+                        On it's way
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -35,7 +40,12 @@ function AdminOrders({ orders }) {
                     <span className="user-order-info">£{total}</span>
                   </div>
                   <div className="status-button-div">
-                    <button className="admin-oder-button">Delivered</button>
+                    <button
+                      onClick={() => statusDelivered(order)}
+                      className="admin-oder-button"
+                    >
+                      Delivered
+                    </button>
                   </div>
                 </div>
               </div>

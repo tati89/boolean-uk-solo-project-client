@@ -4,11 +4,9 @@ import PersonalInfo from "../components/PersonalInfo";
 import UserOrders from "../components/UserOrders";
 import "../css/Account.css";
 
-function Account({ loggedinUser, orders }) {
+function Account({ loggedinUser, userOrders }) {
   const [showInfo, setShowInfo] = useState(false);
   const [showOrders, setShowOrders] = useState(false);
-
-  console.log(orders);
 
   if (!loggedinUser) {
     return null;
@@ -51,7 +49,7 @@ function Account({ loggedinUser, orders }) {
       </div>
       <div className="bottom container">
         {showInfo ? <PersonalInfo loggedinUser={loggedinUser} /> : ""}
-        {showOrders ? <UserOrders orders={orders} /> : ""}
+        {showOrders ? <UserOrders userOrders={userOrders} /> : ""}
       </div>
     </section>
   );

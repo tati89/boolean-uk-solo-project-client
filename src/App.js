@@ -17,7 +17,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
-  const [orders, setOrders] = useState([]);
+  const [userOrders, setUserOrders] = useState([]);
   const [basket, setBasket] = useState(null);
   const [total, setTotal] = useState(0);
   const [qty, setQty] = useState(0);
@@ -55,7 +55,7 @@ function App() {
       .then((data) => {
         setLoggedinUser(null);
         setBasket(null);
-        setOrders([]);
+        setUserOrders([]);
         setTotal(0);
         setQty(0);
       })
@@ -89,7 +89,7 @@ function App() {
         credentials: "include",
       })
         .then((resp) => resp.json())
-        .then((orders) => setOrders(orders.data));
+        .then((orders) => setUserOrders(orders.data));
     }
   }, [loggedinUser]);
 
@@ -244,13 +244,13 @@ function App() {
             <Route path="/account">
               <Admin
                 loggedinUser={loggedinUser}
-                orders={orders}
-                setOrders={setOrders}
+                search={search}
+                onSearch={onSearch}
               />
             </Route>
           ) : (
             <Route path="/account">
-              <Account loggedinUser={loggedinUser} orders={orders} />
+              <Account loggedinUser={loggedinUser} userOrders={userOrders} />
             </Route>
           )}
 
@@ -272,7 +272,7 @@ function App() {
                 removeBasketitem={removeBasketitem}
                 total={total}
                 setTotal={setTotal}
-                setOrders={setOrders}
+                setUserOrders={setUserOrders}
                 loggedinUser={loggedinUser}
               />
             </Route>

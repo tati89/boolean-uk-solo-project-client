@@ -2,21 +2,95 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminOrders from "../components/AdminOrders";
+import AllCustomers from "../components/AllCustomers";
 import "../css/Admin.css";
 
-function Admin({ orders, setOrders }) {
-  const [showAllOrders, setShowAllOrders] = useState(false);
+function Admin({ orders, setOrders, search, onSearch }) {
+  const [showAllOrders, setShowAllOrders] = useState(true);
+  const [showCustomers, setShowCustomers] = useState(false);
+  const [customers, setCustomers] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:4000/orders`, {
+  function loadOrders() {
+    return fetch(`http://localhost:4000/orders`, {
       credentials: "include",
     })
       .then((resp) => resp.json())
-      .then((orders) => setOrders(orders.data));
+      .then((orders) => setAllOrders(orders.data));
+  }
+
+  function loadUsers() {
+    return fetch(`http://localhost:4000/users`, {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((users) => setCustomers(users.data));
+  }
+
+  useEffect(() => {
+    loadOrders();
+    loadUsers();
   }, []);
 
   function handelShowAllOrders() {
     setShowAllOrders(!showAllOrders);
+  }
+
+  function handleShowCustomers() {
+    setShowCustomers(true);
+    setShowAllOrders(false);
+  }
+
+  function statusOnItsWay(clickedOrder) {
+    const updateInfo = {
+      status: "On it's way",
+    };
+
+    fetch(`http://localhost:4000/orders/${clickedOrder.id}`, {
+      credentials: "include",
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateInfo),
+    }).then(loadOrders);
+  }
+
+  function statusDelivered(clickedOrder) {
+    const updateInfo = {
+      status: "Delivered",
+    };
+
+    fetch(`http://localhost:4000/orders/${clickedOrder.id}`, {
+      credentials: "include",
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateInfo),
+    }).then(() => loadOrders());
+  }
+
+  let filteredOrders = allOrders;
+  let filteredCustomers = customers.filter(
+    (customer) => customer.role !== "admin"
+  );
+
+  if (search) {
+    filteredOrders = filteredOrders.filter(
+      (order) =>
+        order.status.toLowerCase().includes(search) ||
+        order.id === Number(search)
+    );
+
+    filteredCustomers = filteredCustomers.filter(
+      (customer) =>
+        customer.id === Number(search) ||
+        customer.username.toLowerCase().includes(search) ||
+        customer.firstName.toLowerCase().includes(search) ||
+        customer.lastName.toLowerCase().includes(search) ||
+        customer.email.toLowerCase().includes(search)
+    );
   }
 
   return (
@@ -31,14 +105,14 @@ function Admin({ orders, setOrders }) {
             </button>
           </div>
           <div>
-            <button className="link-button">
+            <button onClick={handleShowCustomers} className="link-button">
               <li>Customers</li>
             </button>
           </div>
           <div>
             <form>
               <input
-                // onChange={(e) => onSearch(e)}
+                onChange={(e) => onSearch(e)}
                 className="search-input"
                 placeholder="Search.."
               ></input>
@@ -47,7 +121,20 @@ function Admin({ orders, setOrders }) {
           <li></li>
         </ul>
       </div>
-      {showAllOrders ? <AdminOrders orders={orders} /> : ""}
+      {showAllOrders ? (
+        <AdminOrders
+          filteredOrders={filteredOrders}
+          statusOnItsWay={statusOnItsWay}
+          statusDelivered={statusDelivered}
+        />
+      ) : (
+        ""
+      )}
+      {showCustomers ? (
+        <AllCustomers filteredCustomers={filteredCustomers} />
+      ) : (
+        ""
+      )}
     </section>
   );
 }

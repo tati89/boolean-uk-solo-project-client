@@ -37,6 +37,9 @@ li {
 /* ORDERS */
 .admin-orders {
   padding-bottom: 10px;
+  height: 60vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 .admin-orders-container {
   display: grid;
@@ -102,4 +105,30 @@ li {
 
 .status-button-div {
   align-self: center;
+}
+
+/* CUSTOMERS */
+.admin-customers {
+  padding-bottom: 10px;
+  height: 60vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.admin-customers-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
+  background-color: #f4fafa;
+  margin: 20px;
+  padding: 20px;
+}
+
+.custom-info {
+  display: grid;
+  grid-gap: 5px;
+}
+
+.info-title {
+  font-weight: 800;
 }

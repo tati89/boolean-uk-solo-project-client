@@ -99,6 +99,9 @@
 /* //orders component */
 .user-orders {
   padding-bottom: 10px;
+  height: 60vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 .user-orders-container {
   display: grid;

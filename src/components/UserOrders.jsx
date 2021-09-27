@@ -1,8 +1,8 @@
-function UserOrders({ orders }) {
+function UserOrders({ userOrders }) {
   return (
     <section className="user-orders">
-      {orders &&
-        orders.map((order) => {
+      {userOrders &&
+        userOrders.map((order) => {
           const { id, date, total, status } = order;
           return (
             <div key={id}>

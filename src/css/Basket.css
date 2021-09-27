@@ -11,15 +11,19 @@ h2 {
   text-align: center;
 }
 
-/* .min-order {
-  background-color: #e6e7e6;
-  margin-top: 5px;
-  padding: 20px;
+.discount-info {
+  /* background-color: #e6e7e6; */
   display: grid;
   justify-items: center;
-} */
+}
 
-h3 {
+.total-display {
+  display: grid;
+  justify-content: end;
+  padding-right: 1.8rem;
+}
+
+.total-info-h3 {
   color: #585655;
 }
 
@@ -40,12 +44,6 @@ h3 {
 .basket-container li:last-of-type {
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--grey);
-}
-
-.basket-container h3 {
-  margin-top: 2rem;
-  margin-right: 2rem;
-  text-align: right;
 }
 
 .basket-container__item {

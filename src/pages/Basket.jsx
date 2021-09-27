@@ -12,7 +12,7 @@ function Basket({
   total,
   loggedinUser,
   setTotal,
-  setOrders,
+  setUserOrders,
 }) {
   function hadlePlaceOrderBtn() {
     const newOrder = {
@@ -55,7 +55,7 @@ function Basket({
           credentials: "include",
         })
           .then((resp) => resp.json())
-          .then((orders) => setOrders(orders.data));
+          .then((orders) => setUserOrders(orders.data));
       })
       .catch((error) => console.error(error));
   }
@@ -63,11 +63,13 @@ function Basket({
   return (
     <section className="basket-container">
       <h2>Your Basket</h2>
-      <div className="min-order">
-        {/* <h3>
-          Minimum order £25.00. Please add £5 to pounds to proceed with your
-          order.`
-        </h3> */}
+      <div className="discount-info">
+        <h3 className="total-info-h3">
+          {total < 25
+            ? `Spend £${(25 - total).toFixed(2)} more and get free standard
+            delivery.`
+            : "Congrats, you’ve got free UK standard delivery"}
+        </h3>
       </div>
       <ul>
         {basket &&
@@ -82,7 +84,7 @@ function Basket({
             />
           ))}
       </ul>
-      <h3>Total: £{total.toFixed(2)}</h3>
+      <h3 className="total-display">Total: £{total.toFixed(2)}</h3>
       <div className="pay-btn-wrapper">
         <Modal
           buttonLabel={
