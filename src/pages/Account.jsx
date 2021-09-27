@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import AddReview from "../components/AddReview";
 import PersonalInfo from "../components/PersonalInfo";
 import UserOrders from "../components/UserOrders";
 import "../css/Account.css";
@@ -50,6 +51,7 @@ function Account({ loggedinUser, userOrders }) {
       <div className="bottom container">
         {showInfo ? <PersonalInfo loggedinUser={loggedinUser} /> : ""}
         {showOrders ? <UserOrders userOrders={userOrders} /> : ""}
+        <AddReview loggedinUser={loggedinUser} />
       </div>
     </section>
   );
