@@ -5,7 +5,7 @@ import UserOrders from "../components/UserOrders";
 import "../css/Account.css";
 
 function Account({ loggedinUser, userOrders }) {
-  const [showInfo, setShowInfo] = useState(false);
+  const [showInfo, setShowInfo] = useState(true);
   const [showOrders, setShowOrders] = useState(false);
 
   if (!loggedinUser) {
