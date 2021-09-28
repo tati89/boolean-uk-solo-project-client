@@ -1,11 +1,23 @@
 import { TextField } from "@material-ui/core";
+import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "../css/Login.css";
 
 function Login({ loggedinUser, setLoggedinUser }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const history = useHistory();
+  useEffect(() => {
+    if (loggedinUser && loggedinUser.role === "admin") {
+      history.push("/account");
+    }
+
+    if (loggedinUser && loggedinUser.role === "user") {
+      history.push("/menu");
+    }
+  }, [loggedinUser]);
 
   function onLogin(e) {
     e.preventDefault();

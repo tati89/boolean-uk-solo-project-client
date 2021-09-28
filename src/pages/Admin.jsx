@@ -36,11 +36,13 @@ function Admin({ search, onSearch, items, setItems }) {
 
   function handelShowAllOrders() {
     setShowAllOrders(!showAllOrders);
+    setShowItems(false);
   }
 
   function handleShowCustomers() {
     setShowCustomers(true);
     setShowAllOrders(false);
+    setShowItems(false);
   }
 
   function handleShowItems() {
@@ -80,6 +82,7 @@ function Admin({ search, onSearch, items, setItems }) {
   }
 
   let filteredOrders = allOrders;
+  let fillteredAllItems = items;
   let filteredCustomers = customers.filter(
     (customer) => customer.role !== "admin"
   );
@@ -89,6 +92,13 @@ function Admin({ search, onSearch, items, setItems }) {
       (order) =>
         order.status.toLowerCase().includes(search) ||
         order.id === Number(search)
+    );
+
+    fillteredAllItems = fillteredAllItems.filter(
+      (item) =>
+        item.name.toLowerCase().includes(search) ||
+        item.id === Number(search) ||
+        item.description.toLowerCase().includes(search)
     );
 
     filteredCustomers = filteredCustomers.filter(
@@ -154,7 +164,14 @@ function Admin({ search, onSearch, items, setItems }) {
       ) : (
         ""
       )}
-      {showItems ? <ModifyItems items={items} /> : ""}
+      {showItems ? (
+        <ModifyItems
+          fillteredAllItems={fillteredAllItems}
+          setItems={setItems}
+        />
+      ) : (
+        ""
+      )}
     </section>
   );
 }

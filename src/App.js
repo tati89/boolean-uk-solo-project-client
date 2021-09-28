@@ -253,7 +253,7 @@ function App() {
               />
             </Route>
           ) : (
-            <Route path="/account">
+            <Route path="/account" exact>
               <Account loggedinUser={loggedinUser} userOrders={userOrders} />
             </Route>
           )}

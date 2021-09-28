@@ -1,12 +1,11 @@
 import "../css/ModifyItems.css";
 
-function ModifyItems({ items }) {
-  console.log(items);
+function ModifyItems({ fillteredAllItems, setItems }) {
   return (
     <section className="admin-items">
-      {items &&
-        items.map((item) => {
-          const { id, name, price, description, vegetarian } = item;
+      {fillteredAllItems &&
+        fillteredAllItems.map((item) => {
+          const { id, name, price, description } = item;
           return (
             <div key={id}>
               <div className="admin-items-container">
