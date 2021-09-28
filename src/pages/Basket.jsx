@@ -24,7 +24,7 @@ function Basket({
       status: "In progress",
     };
 
-    fetch(`${apiUrl}/orders/${loggedinUser.id}`, {
+    fetch(`${apiUrl}/user-orders/${loggedinUser.id}`, {
       credentials: "include",
       method: "POST",
       headers: {

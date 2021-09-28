@@ -27,7 +27,6 @@ function App() {
   const [fetchError, setFetchError] = useState();
 
   const apiUrl = process.env.REACT_APP_API_URL;
-  console.log("user", loggedinUser);
 
   useEffect(() => {
     const fetchResults = (endpoint) =>
@@ -90,7 +89,7 @@ function App() {
 
   useEffect(() => {
     if (loggedinUser) {
-      fetch(`${apiUrl}/orders/${loggedinUser.id}`, {
+      fetch(`${apiUrl}/user-orders/${loggedinUser.id}`, {
         credentials: "include",
       })
         .then((resp) => resp.json())
