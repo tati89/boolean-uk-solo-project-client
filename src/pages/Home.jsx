@@ -13,7 +13,7 @@ function Home({ categories }) {
         }
       />
 
-      <div className="menu-wrapper">
+      {/* <div className="menu-wrapper">
         {categories &&
           categories.map((category) => (
             <div
@@ -32,7 +32,7 @@ function Home({ categories }) {
               </Link>
             </div>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 }

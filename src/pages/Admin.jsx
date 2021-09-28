@@ -3,11 +3,13 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminOrders from "../components/AdminOrders";
 import AllCustomers from "../components/AllCustomers";
+import ModifyItems from "../components/ModifyItems";
 import "../css/Admin.css";
 
-function Admin({ orders, setOrders, search, onSearch }) {
+function Admin({ search, onSearch, items, setItems }) {
   const [showAllOrders, setShowAllOrders] = useState(true);
   const [showCustomers, setShowCustomers] = useState(false);
+  const [showItems, setShowItems] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
 
@@ -38,6 +40,12 @@ function Admin({ orders, setOrders, search, onSearch }) {
 
   function handleShowCustomers() {
     setShowCustomers(true);
+    setShowAllOrders(false);
+  }
+
+  function handleShowItems() {
+    setShowItems(true);
+    setShowCustomers(false);
     setShowAllOrders(false);
   }
 
@@ -110,6 +118,17 @@ function Admin({ orders, setOrders, search, onSearch }) {
             </button>
           </div>
           <div>
+            <button onClick={handleShowItems} className="link-button">
+              <li>Items</li>
+            </button>
+          </div>
+          <div>
+            <button className="link-button">
+              <li>Add item</li>
+            </button>
+          </div>
+
+          <div>
             <form>
               <input
                 onChange={(e) => onSearch(e)}
@@ -135,6 +154,7 @@ function Admin({ orders, setOrders, search, onSearch }) {
       ) : (
         ""
       )}
+      {showItems ? <ModifyItems items={items} /> : ""}
     </section>
   );
 }

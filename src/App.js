@@ -248,6 +248,8 @@ function App() {
                 loggedinUser={loggedinUser}
                 search={search}
                 onSearch={onSearch}
+                items={items}
+                setItems={setItems}
               />
             </Route>
           ) : (
