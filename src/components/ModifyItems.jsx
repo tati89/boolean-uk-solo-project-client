@@ -17,7 +17,7 @@ function ModifyItems({ fillteredAllItems, setItems, handleUpdateItem }) {
   }
 
   function deleteItem(clickedItem) {
-    fetch(`${apiUrl}/items/${clickedItem.id}`, {
+    fetch(`${apiUrl}/admin-items/${clickedItem.id}`, {
       credentials: "include",
       method: "DELETE",
       headers: {

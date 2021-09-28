@@ -31,7 +31,7 @@ function AddProduct({ items, setItems }) {
       category_ID: category_ID,
     };
 
-    fetch(`${apiUrl}/items`, {
+    fetch(`${apiUrl}/admin-items`, {
       credentials: "include",
       method: "POST",
       headers: {

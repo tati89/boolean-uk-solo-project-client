@@ -28,7 +28,7 @@ function Admin({ search, onSearch, items, setItems }) {
   }
 
   function loadUsers() {
-    return fetch(`${apiUrl}/users`, {
+    return fetch(`${apiUrl}/customers`, {
       credentials: "include",
     })
       .then((resp) => resp.json())
