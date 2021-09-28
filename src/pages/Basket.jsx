@@ -14,6 +14,7 @@ function Basket({
   setTotal,
   setUserOrders,
 }) {
+  const apiUrl = process.env.REACT_APP_API_URL;
   function hadlePlaceOrderBtn() {
     const newOrder = {
       total: total,
@@ -21,7 +22,7 @@ function Basket({
       status: "In progress",
     };
 
-    fetch(`http://localhost:4000/orders/${loggedinUser.id}`, {
+    fetch(`${apiUrl}/orders/${loggedinUser.id}`, {
       credentials: "include",
       method: "POST",
       headers: {
@@ -37,7 +38,7 @@ function Basket({
         }
       })
       .then(() => {
-        fetch(`http://localhost:4000/basket/${basket.id}`, {
+        fetch(`${apiUrl}/basket/${basket.id}`, {
           credentials: "include",
           method: "DELETE",
           headers: {
@@ -51,7 +52,7 @@ function Basket({
           });
       })
       .then(() => {
-        fetch(`http://localhost:4000/orders/${loggedinUser.id}`, {
+        fetch(`${apiUrl}/orders/${loggedinUser.id}`, {
           credentials: "include",
         })
           .then((resp) => resp.json())

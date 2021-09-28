@@ -26,9 +26,11 @@ function App() {
   const [isFetching, setIsFetching] = useState(true);
   const [fetchError, setFetchError] = useState();
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchResults = (endpoint) =>
-      fetch(`http://localhost:4000/${endpoint}`).then((resp) => resp.json());
+      fetch(`${apiUrl}/${endpoint}`).then((resp) => resp.json());
 
     const dataFetches = [
       fetchResults("categories").then((categories) =>
@@ -44,7 +46,7 @@ function App() {
   }, []);
 
   const logOut = () => {
-    fetch("http://localhost:4000/logout", {
+    fetch(`${apiUrl}/logout`, {
       credentials: "include",
     })
       .then((response) => {
@@ -70,7 +72,7 @@ function App() {
 
   useEffect(() => {
     if (loggedinUser) {
-      fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
+      fetch(`${apiUrl}/basket/${loggedinUser.id}`, {
         credentials: "include",
         method: "POST",
         headers: {
@@ -87,7 +89,7 @@ function App() {
 
   useEffect(() => {
     if (loggedinUser) {
-      fetch(`http://localhost:4000/orders/${loggedinUser.id}`, {
+      fetch(`${apiUrl}/orders/${loggedinUser.id}`, {
         credentials: "include",
       })
         .then((resp) => resp.json())
@@ -120,7 +122,7 @@ function App() {
       basket_ID: basket.id,
       item_ID: clickedItem.id,
     };
-    fetch("http://localhost:4000/basket-items", {
+    fetch(`${apiUrl}/basket-items`, {
       credentials: "include",
       method: "POST",
       headers: {
@@ -128,7 +130,7 @@ function App() {
       },
       body: JSON.stringify(itemToBasket),
     }).then(() => {
-      fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
+      fetch(`${apiUrl}/basket/${loggedinUser.id}`, {
         credentials: "include",
       })
         .then((resp) => resp.json())
@@ -138,21 +140,21 @@ function App() {
 
   function decreaseQty(clickedItem) {
     if (clickedItem.qty === 1) {
-      fetch(`http://localhost:4000/basket-items/${clickedItem.id}`, {
+      fetch(`${apiUrl}/basket-items/${clickedItem.id}`, {
         credentials: "include",
         method: "DELETE",
         headers: {
           "Content-Type": "aplication/json",
         },
       }).then(() => {
-        fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
+        fetch(`${apiUrl}/basket/${loggedinUser.id}`, {
           credentials: "include",
         })
           .then((resp) => resp.json())
           .then((basket) => setBasket(basket.data));
       });
     } else {
-      fetch(`http://localhost:4000/basket-items/${clickedItem.id}`, {
+      fetch(`${apiUrl}/basket-items/${clickedItem.id}`, {
         credentials: "include",
         method: "PATCH",
         headers: {
@@ -162,7 +164,7 @@ function App() {
           qty: 1,
         }),
       }).then(() => {
-        fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
+        fetch(`${apiUrl}/basket/${loggedinUser.id}`, {
           credentials: "include",
         })
           .then((resp) => resp.json())
@@ -172,14 +174,14 @@ function App() {
   }
 
   function removeBasketitem(clickedItem) {
-    fetch(`http://localhost:4000/basket-items/${clickedItem.id}`, {
+    fetch(`${apiUrl}/basket-items/${clickedItem.id}`, {
       credentials: "include",
       method: "DELETE",
       headers: {
         "Content-Type": "aplication/json",
       },
     }).then(() => {
-      fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
+      fetch(`${apiUrl}/basket/${loggedinUser.id}`, {
         credentials: "include",
       })
         .then((resp) => resp.json())
@@ -188,7 +190,7 @@ function App() {
   }
 
   const loadCurrentlyAuthenticatedUser = useCallback(() => {
-    fetch("http://localhost:4000/me", {
+    fetch(`${apiUrl}/me`, {
       credentials: "include",
     })
       .then((resp) => resp.json())

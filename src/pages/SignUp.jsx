@@ -12,6 +12,8 @@ function SignUp({ setLoggedinUser, loggedinUser, setBasket }) {
   const [email, setEmail] = useState();
   const [agreedToNews, setAgreedToNews] = useState(false);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   // useEffect(() => {
   //   if (loggedinUser) {
   //     fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
@@ -43,7 +45,7 @@ function SignUp({ setLoggedinUser, loggedinUser, setBasket }) {
       agreedToNews,
     };
 
-    fetch("http://localhost:4000/signup", {
+    fetch(`${apiUrl}/signup`, {
       credentials: "include",
       method: "POST",
       headers: {

@@ -13,8 +13,10 @@ function Admin({ search, onSearch, items, setItems }) {
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   function loadOrders() {
-    return fetch(`http://localhost:4000/orders`, {
+    return fetch(`${apiUrl}/orders`, {
       credentials: "include",
     })
       .then((resp) => resp.json())
@@ -22,7 +24,7 @@ function Admin({ search, onSearch, items, setItems }) {
   }
 
   function loadUsers() {
-    return fetch(`http://localhost:4000/users`, {
+    return fetch(`${apiUrl}/users`, {
       credentials: "include",
     })
       .then((resp) => resp.json())
@@ -56,7 +58,7 @@ function Admin({ search, onSearch, items, setItems }) {
       status: "On it's way",
     };
 
-    fetch(`http://localhost:4000/orders/${clickedOrder.id}`, {
+    fetch(`${apiUrl}/orders/${clickedOrder.id}`, {
       credentials: "include",
       method: "PATCH",
       headers: {
@@ -71,7 +73,7 @@ function Admin({ search, onSearch, items, setItems }) {
       status: "Delivered",
     };
 
-    fetch(`http://localhost:4000/orders/${clickedOrder.id}`, {
+    fetch(`${apiUrl}/orders/${clickedOrder.id}`, {
       credentials: "include",
       method: "PATCH",
       headers: {

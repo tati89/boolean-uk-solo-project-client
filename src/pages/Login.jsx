@@ -9,6 +9,9 @@ function Login({ loggedinUser, setLoggedinUser }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const history = useHistory();
+
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     if (loggedinUser && loggedinUser.role === "admin") {
       history.push("/account");
@@ -27,7 +30,7 @@ function Login({ loggedinUser, setLoggedinUser }) {
       password,
     };
 
-    fetch("http://localhost:4000/login", {
+    fetch(`${apiUrl}/login`, {
       credentials: "include",
       method: "POST",
       headers: {

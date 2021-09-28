@@ -8,6 +8,8 @@ function AddReview({ loggedinUser }) {
   const [reviewDate, setReviewDate] = useState("");
   const [content, setContent] = useState("");
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   if (!loggedinUser) {
     return null;
   }
@@ -21,7 +23,7 @@ function AddReview({ loggedinUser }) {
       user_ID: loggedinUser.id,
     };
 
-    fetch("http://localhost:4000/reviews", {
+    fetch(`${apiUrl}/reviews`, {
       credentials: "include",
       method: "POST",
       headers: {
