@@ -27,6 +27,7 @@ function App() {
   const [fetchError, setFetchError] = useState();
 
   const apiUrl = process.env.REACT_APP_API_URL;
+  console.log("user", loggedinUser);
 
   useEffect(() => {
     const fetchResults = (endpoint) =>
@@ -278,6 +279,7 @@ function App() {
                 removeBasketitem={removeBasketitem}
                 total={total}
                 setTotal={setTotal}
+                setQty={setQty}
                 setUserOrders={setUserOrders}
                 loggedinUser={loggedinUser}
               />

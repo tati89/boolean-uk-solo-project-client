@@ -1,0 +1,58 @@
+.addItem-page-container {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  height: 60vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  /* max-width: 65vw;
+  margin: 0 auto 2rem auto; */
+  display: grid;
+  justify-items: center;
+}
+
+.addItem-page-header {
+  font-family: Gill Sans, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+.item-form-wrapper {
+  display: grid;
+  place-items: center;
+}
+
+form.login {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+
+.addItem-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #ff6400;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logo-page-h3 {
+  font-family: Roboto, sans-serif;
+  margin: 0px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+  color: #080908;
+}
+
+.logo-page-sign-up {
+  text-decoration: none;
+  color: #64a331;
+}
+
+.addItem-textfield {
+  width: 300px;
+}

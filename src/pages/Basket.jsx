@@ -10,11 +10,13 @@ function Basket({
   decreaseQty,
   removeBasketitem,
   total,
+  setQty,
   loggedinUser,
   setTotal,
   setUserOrders,
 }) {
   const apiUrl = process.env.REACT_APP_API_URL;
+
   function hadlePlaceOrderBtn() {
     const newOrder = {
       total: total,
@@ -49,6 +51,7 @@ function Basket({
           .then(() => {
             setBasket(null);
             setTotal(0);
+            setQty(0);
           });
       })
       .then(() => {

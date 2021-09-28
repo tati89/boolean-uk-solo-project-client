@@ -1,6 +1,31 @@
+import { useEffect } from "react";
 import "../css/ModifyItems.css";
 
-function ModifyItems({ fillteredAllItems, setItems }) {
+function ModifyItems({ fillteredAllItems, setItems, handleUpdateItem }) {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    loadItems();
+  }, []);
+
+  function loadItems() {
+    return fetch(`${apiUrl}/items`, {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((items) => setItems(items.data));
+  }
+
+  function deleteItem(clickedItem) {
+    fetch(`${apiUrl}/items/${clickedItem.id}`, {
+      credentials: "include",
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(loadItems);
+  }
+
   return (
     <section className="admin-items">
       {fillteredAllItems &&
@@ -30,10 +55,17 @@ function ModifyItems({ fillteredAllItems, setItems }) {
                   {item.vegetarian == true ? <span>yes</span> : <span>no</span>}
                 </div>
                 <div className="admin-item-remove-btn">
-                  <button className="admin-remove">Remove</button>
+                  <button
+                    onClick={() => deleteItem(item)}
+                    className="admin-remove"
+                  >
+                    Remove
+                  </button>
                 </div>
                 <div className="admin-item-update-btn">
-                  <button className="admin-update">Update</button>
+                  <button onClick={handleUpdateItem} className="admin-update">
+                    Update
+                  </button>
                 </div>
               </div>
             </div>

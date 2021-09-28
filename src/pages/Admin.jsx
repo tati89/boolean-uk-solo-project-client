@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import AddProduct from "../components/AddProduct";
 import AdminOrders from "../components/AdminOrders";
 import AllCustomers from "../components/AllCustomers";
 import ModifyItems from "../components/ModifyItems";
+import UpdateItem from "../components/UpdateItem";
 import "../css/Admin.css";
 
 function Admin({ search, onSearch, items, setItems }) {
   const [showAllOrders, setShowAllOrders] = useState(true);
   const [showCustomers, setShowCustomers] = useState(false);
+  const [showAddItemForm, setShowAddItemForm] = useState(false);
+  const [showUpdateItemForm, setUpdateItemForm] = useState(false);
   const [showItems, setShowItems] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
@@ -39,18 +43,37 @@ function Admin({ search, onSearch, items, setItems }) {
   function handelShowAllOrders() {
     setShowAllOrders(!showAllOrders);
     setShowItems(false);
+    setShowAddItemForm(false);
+    setShowCustomers(false);
   }
 
   function handleShowCustomers() {
     setShowCustomers(true);
     setShowAllOrders(false);
     setShowItems(false);
+    setShowAddItemForm(false);
   }
 
   function handleShowItems() {
     setShowItems(true);
     setShowCustomers(false);
     setShowAllOrders(false);
+    setShowAddItemForm(false);
+  }
+
+  function handleAddItem() {
+    setShowAddItemForm(true);
+    setShowItems(false);
+    setShowCustomers(false);
+    setShowAllOrders(false);
+  }
+
+  function handleUpdateItem() {
+    setShowAddItemForm(false);
+    setShowItems(false);
+    setShowCustomers(false);
+    setShowAllOrders(false);
+    setUpdateItemForm(true);
   }
 
   function statusOnItsWay(clickedOrder) {
@@ -119,24 +142,24 @@ function Admin({ search, onSearch, items, setItems }) {
         <ul className="admin-ul">
           <li className="admin-greeting">Welcome, admin</li>
           <li></li>
-          <div>
+          <div className="admin-li-dashboard-wrapper">
             <button onClick={handelShowAllOrders} className="link-button">
-              <li>Orders</li>
+              <li className="admin-li-dashboard">Orders</li>
             </button>
           </div>
-          <div>
+          <div className="admin-li-dashboard-wrapper">
             <button onClick={handleShowCustomers} className="link-button">
-              <li>Customers</li>
+              <li className="admin-li-dashboard">Customers</li>
             </button>
           </div>
-          <div>
+          <div className="admin-li-dashboard-wrapper">
             <button onClick={handleShowItems} className="link-button">
-              <li>Items</li>
+              <li className="admin-li-dashboard">Items</li>
             </button>
           </div>
-          <div>
-            <button className="link-button">
-              <li>Add item</li>
+          <div className="admin-li-dashboard-wrapper">
+            <button onClick={handleAddItem} className="link-button">
+              <li className="admin-li-dashboard">Add item</li>
             </button>
           </div>
 
@@ -170,10 +193,13 @@ function Admin({ search, onSearch, items, setItems }) {
         <ModifyItems
           fillteredAllItems={fillteredAllItems}
           setItems={setItems}
+          handleUpdateItem={handleUpdateItem}
         />
       ) : (
         ""
       )}
+      {showAddItemForm ? <AddProduct items={items} setItems={setItems} /> : ""}
+      {showUpdateItemForm ? <UpdateItem /> : ""}
     </section>
   );
 }

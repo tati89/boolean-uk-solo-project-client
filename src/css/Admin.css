@@ -8,6 +8,9 @@
 .admin-dashboard {
   /* background-color: #fa7d29; */
   color: black;
+  /* margin: 0px 15px 10px 15px; */
+  /* background-color: #f0f3f3; */
+  background-color: #f4de9e;
 }
 
 .admin-ul {
@@ -19,9 +22,14 @@
   padding: 25px 15px;
 }
 
-li {
+.admin-li-dashboard-wrapper {
+  justify-self: center;
+}
+
+.admin-li-dashboard {
   text-decoration: none;
   font-weight: 800;
+  font-size: 1.2rem;
 }
 
 .link-button {
@@ -29,8 +37,8 @@ li {
   border: 0;
   cursor: pointer;
   font-size: 1rem;
-  background-color: white;
-  /* background-color: #fa7d29; */
+  /* background-color: white; */
+  background-color: #f4de9e;
 }
 
 /* COMPONENTS */

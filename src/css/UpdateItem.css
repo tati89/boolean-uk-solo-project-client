@@ -1,0 +1,49 @@
+.admin-items {
+  padding-bottom: 10px;
+  height: 60vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.admin-items-container {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.3fr 2fr 0.3fr 1fr 1fr;
+  justify-items: center;
+  grid-gap: 10px;
+  background-color: #f4fafa;
+  margin: 20px;
+  padding: 20px;
+}
+
+.admin-item-info {
+  display: grid;
+  grid-gap: 5px;
+}
+
+.admin-item-title {
+  font-weight: 800;
+}
+
+.admin-item-remove-btn,
+.admin-item-update-btn {
+  align-self: center;
+}
+
+.admin-remove,
+.admin-update {
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: 0;
+}
+
+.admin-remove {
+  background-color: #ff6400;
+  color: white;
+  font-weight: 600;
+}
+
+.admin-update {
+  background-color: #00584b;
+  color: white;
+  font-weight: 600;
+}
