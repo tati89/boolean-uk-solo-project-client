@@ -1,7 +1,5 @@
 import Modal from "../components/Modal";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import BasketItem from "./BasketItem";
 
 function FilteredMenu({
   filteredItems,

@@ -1,6 +1,5 @@
 import "../css/Home.css";
 import Banner from "../components/Banner.jsx";
-import { Route, Link } from "react-router-dom";
 
 function Home({ categories }) {
   return (

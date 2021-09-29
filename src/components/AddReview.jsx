@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import "../css/AddReview.css";
 import Modal from "../components/Modal";

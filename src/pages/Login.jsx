@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { TextField } from "@material-ui/core";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Redirect, Route, Switch } from "react-router-dom";
 import "../css/Login.css";
 
 function Login({ loggedinUser, setLoggedinUser }) {

@@ -1,5 +1,5 @@
 import "../css/Header.css";
-import { Route, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
 
 function Header({

@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Route, Link } from "react-router-dom";
-import Banner from "../components/Banner.jsx";
 import FilteredMenu from "../components/FilteredMenu.jsx";
 import "../css/Menu.css";
 
@@ -19,26 +17,24 @@ function Menu({
   const [filteredItems, setFilteredItems] = useState(items);
 
   useEffect(() => {
-    if (filter) {
-      switch (filter) {
-        case "starters":
-          setFilteredItems(items.filter((item) => item.category_ID === 1));
-          break;
-        case "salads":
-          setFilteredItems(items.filter((item) => item.category_ID === 2));
-          break;
-        case "pizzas":
-          setFilteredItems(items.filter((item) => item.category_ID === 3));
-          break;
-        case "pastas":
-          setFilteredItems(items.filter((item) => item.category_ID === 4));
-          break;
-        case "deserts":
-          setFilteredItems(items.filter((item) => item.category_ID === 5));
-          break;
-      }
-    } else {
-      setFilteredItems(items);
+    switch (filter) {
+      case "starters":
+        setFilteredItems(items.filter((item) => item.category_ID === 1));
+        break;
+      case "salads":
+        setFilteredItems(items.filter((item) => item.category_ID === 2));
+        break;
+      case "pizzas":
+        setFilteredItems(items.filter((item) => item.category_ID === 3));
+        break;
+      case "pastas":
+        setFilteredItems(items.filter((item) => item.category_ID === 4));
+        break;
+      case "deserts":
+        setFilteredItems(items.filter((item) => item.category_ID === 5));
+        break;
+      default:
+        setFilteredItems(items);
     }
   }, [filter, items]);
 

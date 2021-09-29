@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { TextField, FormControlLabel, Checkbox } from "@material-ui/core";
 import "../css/SignUp.css";
 
