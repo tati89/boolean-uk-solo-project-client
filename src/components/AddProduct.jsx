@@ -1,15 +1,10 @@
 import { TextField, FormControlLabel, Checkbox } from "@material-ui/core";
-import { useEffect } from "react";
+
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+
 import "../css/Addproduct.css";
 
 function AddProduct({ items, setItems }) {
-  const {
-    reset,
-    formState: { errors },
-  } = useForm();
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");

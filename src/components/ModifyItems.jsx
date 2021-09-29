@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import "../css/ModifyItems.css";
 
@@ -52,7 +53,7 @@ function ModifyItems({ fillteredAllItems, setItems, handleUpdateItem }) {
                 </div>
                 <div className="admin-item-info">
                   <span className="admin-item-title">Vegetarian:</span>
-                  {item.vegetarian == true ? <span>yes</span> : <span>no</span>}
+                  {item.vegetarian ? <span>yes</span> : <span>no</span>}
                 </div>
                 <div className="admin-item-remove-btn">
                   <button
@@ -63,7 +64,10 @@ function ModifyItems({ fillteredAllItems, setItems, handleUpdateItem }) {
                   </button>
                 </div>
                 <div className="admin-item-update-btn">
-                  <button onClick={handleUpdateItem} className="admin-update">
+                  <button
+                    onClick={() => handleUpdateItem(item)}
+                    className="admin-update"
+                  >
                     Update
                   </button>
                 </div>

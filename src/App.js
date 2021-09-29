@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { Redirect, Route, Switch } from "react-router-dom";
 import React, { useState, useCallback } from "react";
 import Header from "./components/Header";

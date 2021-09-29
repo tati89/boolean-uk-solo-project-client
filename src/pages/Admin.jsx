@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import AddProduct from "../components/AddProduct";
 import AdminOrders from "../components/AdminOrders";
 import AllCustomers from "../components/AllCustomers";
 import ModifyItems from "../components/ModifyItems";
-import UpdateItem from "../components/UpdateItem";
+// import UpdateItem from "../components/UpdateItem";
 import "../css/Admin.css";
 
 function Admin({ search, onSearch, items, setItems }) {
@@ -16,6 +17,7 @@ function Admin({ search, onSearch, items, setItems }) {
   const [showItems, setShowItems] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
+  const [itemtoUpdate, setItemtoUpdate] = useState();
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -68,7 +70,8 @@ function Admin({ search, onSearch, items, setItems }) {
     setShowAllOrders(false);
   }
 
-  function handleUpdateItem() {
+  function handleUpdateItem(item) {
+    setItemtoUpdate(item);
     setShowAddItemForm(false);
     setShowItems(false);
     setShowCustomers(false);
@@ -199,7 +202,15 @@ function Admin({ search, onSearch, items, setItems }) {
         ""
       )}
       {showAddItemForm ? <AddProduct items={items} setItems={setItems} /> : ""}
-      {showUpdateItemForm ? <UpdateItem /> : ""}
+      {/* {showUpdateItemForm ? (
+        <UpdateItem
+          setItemtoUpdate={setItemtoUpdate}
+          itemtoUpdate={itemtoUpdate}
+          setItems={setItems}
+        />
+      ) : (
+        ""
+      )} */}
     </section>
   );
 }
