@@ -37,7 +37,7 @@ function UpdateUser({ loggedinUser, setLoggedinUser }) {
         }
       })
       .then(() => {
-        return fetch(`${apiUrl}/customers`, {
+        fetch(`${apiUrl}/customers`, {
           credentials: "include",
         })
           .then((resp) => resp.json())
