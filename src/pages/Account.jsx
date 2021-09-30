@@ -1,13 +1,15 @@
 import { useState } from "react";
 import AddReview from "../components/AddReview";
 import PersonalInfo from "../components/PersonalInfo";
+import UpdateUser from "../components/UpdateUser";
 import UserOrders from "../components/UserOrders";
 import "../css/Account.css";
 
-function Account({ loggedinUser, userOrders }) {
-  const [showInfo, setShowInfo] = useState(true);
-  const [showOrders, setShowOrders] = useState(false);
+function Account({ loggedinUser, userOrders, setLoggedinUser }) {
+  const [showInfo, setShowInfo] = useState(false);
+  const [showOrders, setShowOrders] = useState(true);
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [showUpdateUserForm, setShowUpdateForm] = useState(false);
 
   if (!loggedinUser) {
     return null;
@@ -17,18 +19,28 @@ function Account({ loggedinUser, userOrders }) {
     setShowInfo(!showInfo);
     setShowOrders(false);
     setShowReviewForm(false);
+    setShowUpdateForm(false);
   }
 
   function displayOrders() {
     setShowOrders(!showOrders);
     setShowInfo(false);
     setShowReviewForm(false);
+    setShowUpdateForm(false);
   }
 
   function displayReviewForm() {
     setShowReviewForm(!showReviewForm);
     setShowInfo(false);
     setShowOrders(false);
+    setShowUpdateForm(false);
+  }
+
+  function displayUpdatedUserForm(user) {
+    setShowReviewForm(false);
+    setShowInfo(false);
+    setShowOrders(false);
+    setShowUpdateForm(true);
   }
 
   return (
@@ -59,9 +71,24 @@ function Account({ loggedinUser, userOrders }) {
         <div></div>
       </div>
       <div className="bottom container">
-        {showInfo ? <PersonalInfo loggedinUser={loggedinUser} /> : ""}
+        {showInfo ? (
+          <PersonalInfo
+            loggedinUser={loggedinUser}
+            displayUpdatedUserForm={displayUpdatedUserForm}
+          />
+        ) : (
+          ""
+        )}
         {showOrders ? <UserOrders userOrders={userOrders} /> : ""}
         {showReviewForm ? <AddReview loggedinUser={loggedinUser} /> : ""}
+        {showUpdateUserForm ? (
+          <UpdateUser
+            loggedinUser={loggedinUser}
+            setLoggedinUser={setLoggedinUser}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </section>
   );

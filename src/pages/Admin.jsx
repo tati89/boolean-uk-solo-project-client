@@ -17,7 +17,7 @@ function Admin({ search, onSearch, items, setItems }) {
   const [showItems, setShowItems] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
-  const [itemtoUpdate, setItemtoUpdate] = useState();
+  const [itemtoUpdate, setItemtoUpdate] = useState(true);
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -47,6 +47,7 @@ function Admin({ search, onSearch, items, setItems }) {
     setShowItems(false);
     setShowAddItemForm(false);
     setShowCustomers(false);
+    setItemtoUpdate();
   }
 
   function handleShowCustomers() {
@@ -54,6 +55,7 @@ function Admin({ search, onSearch, items, setItems }) {
     setShowAllOrders(false);
     setShowItems(false);
     setShowAddItemForm(false);
+    setItemtoUpdate();
   }
 
   function handleShowItems() {
@@ -61,6 +63,7 @@ function Admin({ search, onSearch, items, setItems }) {
     setShowCustomers(false);
     setShowAllOrders(false);
     setShowAddItemForm(false);
+    setItemtoUpdate();
   }
 
   function handleAddItem() {
@@ -68,6 +71,7 @@ function Admin({ search, onSearch, items, setItems }) {
     setShowItems(false);
     setShowCustomers(false);
     setShowAllOrders(false);
+    setItemtoUpdate();
   }
 
   function handleUpdateItem(item) {

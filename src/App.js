@@ -258,7 +258,11 @@ function App() {
             </Route>
           ) : (
             <Route path="/account" exact>
-              <Account loggedinUser={loggedinUser} userOrders={userOrders} />
+              <Account
+                loggedinUser={loggedinUser}
+                setLoggedinUser={setLoggedinUser}
+                userOrders={userOrders}
+              />
             </Route>
           )}
 
