@@ -6,7 +6,7 @@ import AddProduct from "../components/AddProduct";
 import AdminOrders from "../components/AdminOrders";
 import AllCustomers from "../components/AllCustomers";
 import ModifyItems from "../components/ModifyItems";
-// import UpdateItem from "../components/UpdateItem";
+import UpdateItem from "../components/UpdateItem";
 import "../css/Admin.css";
 
 function Admin({ search, onSearch, items, setItems }) {
@@ -202,7 +202,7 @@ function Admin({ search, onSearch, items, setItems }) {
         ""
       )}
       {showAddItemForm ? <AddProduct items={items} setItems={setItems} /> : ""}
-      {/* {showUpdateItemForm ? (
+      {showUpdateItemForm ? (
         <UpdateItem
           setItemtoUpdate={setItemtoUpdate}
           itemtoUpdate={itemtoUpdate}
@@ -210,7 +210,7 @@ function Admin({ search, onSearch, items, setItems }) {
         />
       ) : (
         ""
-      )} */}
+      )}
     </section>
   );
 }
