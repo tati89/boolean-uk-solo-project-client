@@ -2,7 +2,7 @@ import "../css/Footer.css";
 function Footer() {
   return (
     <footer>
-      <div class="signature">
+      <div className="signature">
         <h4>&copy;Tati</h4>
       </div>
       <div>

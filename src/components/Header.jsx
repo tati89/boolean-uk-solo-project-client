@@ -2,15 +2,7 @@ import "../css/Header.css";
 import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
 
-function Header({
-  loggedinUser,
-  setLoggedinUser,
-  search,
-  setSearch,
-  logOut,
-  total,
-  qty,
-}) {
+function Header({ loggedinUser, logOut, total, qty }) {
   return (
     <header>
       <div className="top-top-header">

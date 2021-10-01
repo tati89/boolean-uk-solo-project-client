@@ -52,18 +52,11 @@ header {
   font-size: 2.5rem;
   font-weight: 700;
   color: #3d7906;
-  /* color: #585655; */
-  /* font-family: Snell Roundhand, cursive; */
 }
 
 .svg-logo {
   width: 30px;
 }
-
-/* .eat-drink-enjoy {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-} */
 
 .subtotal {
   display: grid;
@@ -87,16 +80,8 @@ header {
   border: 0;
 }
 
-/* .login-div,
-.header-svg,
-.subtotal,
-.nave-li {
-  padding-top: 15px;
-} */
-*/
-
- /* BOTTOM HEADER  */
- .header-bottom-nav {
+/* BOTTOM HEADER  */
+.header-bottom-nav {
   display: grid;
   padding-top: 20px;
 }
@@ -110,7 +95,6 @@ header {
   font-size: 1.5rem;
   padding-right: 10px;
   background-color: #00594b;
-  /* background-color: #4ea100; */
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 20px;
@@ -121,10 +105,7 @@ header {
 }
 
 .nave-li {
-  /* font-family: Gill Sans, sans-serif; */
   text-decoration: none;
-  /* font-size: 1.2rem; */
-  /* color: #51545c; */
   color: #fefffe;
   font-size: 14px;
   font-weight: 700;
@@ -142,8 +123,8 @@ header {
 
 .log-out {
   border: 0;
-  background-color: #e7dfdc;
   font-weight: 600;
+  background-color: #f0f3f3;
 }
 
 .svg-quantity-wrapper {

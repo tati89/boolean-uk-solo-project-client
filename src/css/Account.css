@@ -132,8 +132,13 @@
   display: grid;
 }
 
-.order-span-title {
+.user-order-span-title {
   font-weight: 600;
+  padding-left: 150px;
+}
+
+.status-user-info-div {
+  padding-left: 150px;
 }
 
 .order-number {

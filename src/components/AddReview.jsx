@@ -14,8 +14,6 @@ function AddReview({ loggedinUser }) {
   }
 
   function postReview(e) {
-    // e.preventDefault();
-
     const newReview = {
       date: reviewDate,
       content: content,

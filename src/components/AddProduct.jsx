@@ -53,6 +53,7 @@ function AddProduct({ items, setItems }) {
         setDescription("");
         setImg("");
         setCategory_ID("");
+        alert("Succfully added new item!");
       })
       .catch((error) => console.error(error));
   }

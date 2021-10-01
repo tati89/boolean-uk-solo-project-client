@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 .App {
-  /* font-family: sans-serif;
-  scroll-behavior: smooth;
-  text-align: center; */
   margin-left: auto;
   margin-right: auto;
   max-width: 1024px;
@@ -19,11 +16,6 @@ body {
   font-family: Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  /* color: #555; */
   background-color: #f2f3f4;
   scroll-behavior: smooth;
 }
-
-/* main {
-  height: 100vh;
-} */

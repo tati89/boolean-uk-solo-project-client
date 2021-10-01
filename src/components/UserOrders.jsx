@@ -18,8 +18,8 @@ function UserOrder({ order }) {
           <span className="order-number">#{id}</span>
         </div>
         <div className="right-top">
-          <span className="order-span-title">Status:</span>
-          <div>
+          <span className="user-order-span-title">Status:</span>
+          <div className="status-user-info-div">
             <span className="user-status-info">{status}</span>
           </div>
         </div>

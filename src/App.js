@@ -62,6 +62,7 @@ function App() {
         setLoggedinUser(null);
         setBasket(null);
         setUserOrders([]);
+        setSearch("");
         setTotal(0);
         setQty(0);
       })

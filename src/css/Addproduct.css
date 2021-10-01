@@ -4,8 +4,6 @@
   height: 60vh;
   overflow-y: auto;
   scroll-behavior: smooth;
-  /* max-width: 65vw;
-  margin: 0 auto 2rem auto; */
   display: grid;
   justify-items: center;
 }
