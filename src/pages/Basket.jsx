@@ -16,6 +16,7 @@ function Basket({
   setUserOrders,
 }) {
   const apiUrl = process.env.REACT_APP_API_URL;
+  const isPayable = total >= 25;
 
   function hadlePlaceOrderBtn() {
     const newOrder = {
@@ -70,9 +71,10 @@ function Basket({
       <div className="discount-info">
         <h3 className="total-info-h3">
           {total < 25
-            ? `Spend £${(25 - total).toFixed(2)} more and get free standard
-            delivery.`
-            : "Congrats, you’ve got free UK standard delivery"}
+            ? `Minimum order £25.00. Please add £${(25 - total).toFixed(
+                2
+              )} pounds to proceed with your order.`
+            : "Proceed to checkout"}
         </h3>
       </div>
       <ul>
@@ -90,15 +92,21 @@ function Basket({
       </ul>
       <h3 className="total-display">Total: £{total.toFixed(2)}</h3>
       <div className="pay-btn-wrapper">
-        <Modal
-          buttonLabel={
-            <button onClick={hadlePlaceOrderBtn} className="pay-button">
-              Place order
-            </button>
-          }
-        >
-          <span className="product-title">Order has been placed</span>
-        </Modal>
+        {isPayable ? (
+          <>
+            <Modal buttonLabel={<span className="pay-button">Checkout</span>}>
+              <p>{`Total payment £${total.toFixed(2)}`}</p>
+              <button
+                className="pay-button"
+                onClick={() => hadlePlaceOrderBtn()}
+              >
+                Pay
+              </button>
+            </Modal>
+          </>
+        ) : (
+          "Not enough products to purchase"
+        )}
       </div>
     </section>
   );

@@ -14,23 +14,6 @@ function SignUp({ setLoggedinUser, loggedinUser, setBasket }) {
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
-  // useEffect(() => {
-  //   if (loggedinUser) {
-  //     fetch(`http://localhost:4000/basket/${loggedinUser.id}`, {
-  //       credentials: "include",
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         user_ID: loggedinUser.id,
-  //       }),
-  //     })
-  //       .then((resp) => resp.json())
-  //       .then((basket) => setBasket(basket.data));
-  //   }
-  // }, [loggedinUser]);
-
   function onSignUp(e) {
     e.preventDefault();
 
@@ -62,6 +45,8 @@ function SignUp({ setLoggedinUser, loggedinUser, setBasket }) {
       })
       .then((user) => {
         setLoggedinUser(user.data);
+        e.target.reset();
+        alert("Account created successfully!");
       })
       .catch((error) => console.error(error));
   }

@@ -14,7 +14,7 @@ function Header({
   return (
     <header>
       <div className="top-top-header">
-        <span className="free-delivery-sign">Free delivery from £25</span>
+        <span className="free-delivery-sign">Minimum order £25</span>
         <div></div>
         <div className="login-div">
           {loggedinUser ? (

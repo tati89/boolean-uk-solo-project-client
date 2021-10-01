@@ -12,7 +12,7 @@ function UpdateItem({ itemtoUpdate, setItems }) {
   function onSubmit(event) {
     event.preventDefault();
 
-    const bla = {
+    const updateInfo = {
       name: event.target.name.value,
       price: Number(event.target.price.value),
       description: event.target.description.value,
@@ -27,7 +27,7 @@ function UpdateItem({ itemtoUpdate, setItems }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(bla),
+      body: JSON.stringify(updateInfo),
     })
       .then((response) => {
         if (response.ok) {
